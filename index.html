@@ -1,38 +1,68 @@
 <!DOCTYPE html>
 <!-- This website was created by Adrian De Guzman, 4/22/20 -->
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
     <title>Portfolio</title>
     <meta charset="utf-8">
     <meta name="description" content="This website features sample projects for my portfolio.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-    <div id="main-container">
-        <header>
-            <h1>Portfolio à la mode</h1>
-        </header>
-        
-        <main class="flex-class">
-            <!--Save for later
+    <div id="main-container" class="flex-class">
+        <!--MAIN PORTFOLIO-->
+        <div id="main-portfolio">
+            <header>
+                <h1>Portfolio à la mode</h1>
+            </header>
+
+            <main class="flex-class">
+                <!--Save for later
             <ul class="general-info-list">
                 <li class="general-info-list">Novice Web Designer</li>
                 <li class="general-info-list">Novice Web Designer</li>
                 <li class="general-info-list">Novice Web Designer</li>
             </ul>
             -->
-            <img class="placeholder" src="not-found.png" />
+                <img class="placeholder" src="not-found.png" />
 
-            <section>
-                <h2 class="heading-null">Sample projects and designs</h2>
-                <ul class="block-sect">
-                    <li><a href="merch-shop/index.html">simple merch shop</a></li>
-                    <li>placeholder 1</li>
-                    <li>placeholder 2</li>
-                </ul>
-            </section>
-        </main>
+                <section>
+                    <h2 class="heading-null">Sample projects and designs</h2>
+                    <ul class="block-sect">
+                        <li><a href="merch-shop/index.html">simple merch shop</a></li>
+                        <li>placeholder 1</li>
+                        <li>placeholder 2</li>
+                    </ul>
+                </section>
+            </main>
+            <button onclick="switchPortfolio()">switch</button>
+        </div>
+
+        <!--SIDE PORTFOLIO-->
+        <div id="side-portfolio">
+            <header class="side-portfolio">
+                <h1>mi Art à la mode</h1>
+            </header>
+
+            <main class="flex-class">
+                <img class="placeholder" src="not-found.png" />
+
+                <section >
+                    <h2 class="heading-null">Sample projects and designs</h2>
+                    <ul class="side-portfolio">
+                        <li><a href="merch-shop/index.html">simple merch shop</a></li>
+                        <li>placeholder 1</li>
+                        <li>placeholder 2</li>
+                    </ul>
+                </section>
+            </main>
+            <button onclick="switchPortfolio()" class="side-portfolio">switch</button>
+        </div>
+        
+
 
         <footer>
             <p>Contact Me @</p>
@@ -40,4 +70,5 @@
         </footer>
     </div>
 </body>
+
 </html>
