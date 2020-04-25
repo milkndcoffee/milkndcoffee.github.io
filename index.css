@@ -45,13 +45,29 @@ a:hover{
     color: burlywood;
 }
 
+.fade-out{
+    transition: all 1.5s ease;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+.fade-in{
+    transition: all 2.5s ease;
+    opacity: 100;
+    height: 0;
+    overflow: visible;
+
+}
+
+
 
 /* ------------------------------------------------------------------------------------ */
 /*Mobile Stylings*/
-#mainContainer {
+#main-container {
 	width: 80%;
 	margin-left: auto;
-	margin-right: auto;
+    margin-right: auto;
+    
 }
 
 header {
@@ -60,8 +76,7 @@ header {
     padding-left: 4%;
     padding-right: 4%;
     text-align: center;
-
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: #c594ab;
     color: #FFFFFF;
 }
@@ -113,13 +128,10 @@ button {
 
 footer {
 	font-size: .70rem;
-	text-align: center;
+    text-align: center;
 }
 
 /* SIDE-PORTFOLIO */
-#side-portfolio{
-    display: none;
-}
 header.side-portfolio{
     background-color: #94afc5;
     color: #FFFFFF;
