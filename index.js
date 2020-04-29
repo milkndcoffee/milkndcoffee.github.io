@@ -16,4 +16,4 @@ function switchPortfolio() {
         }
         artStuff.classList.add("fade-in");
     }
-} 
+}

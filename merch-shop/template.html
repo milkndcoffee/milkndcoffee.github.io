@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<!-- This website was created by Adrian De Guzman, 4/23/20 -->
+<!-- This website was updated by Adrian De Guzman, 4/29/20 -->
 <!-- 
     TODO:
     - add link to cart images, replace "class" with "href"
     - better name for title
+    - add meta desctriptions nd stuff
+    - count for cart
 -->
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/stylings.css">
     <script src="js/main.js"></script>
-    <title>Shop Shop</title>
+    <title>Not a Real Shop Shop</title>
     <meta charset="utf-8">
+    <meta property="og:title" content="Not a Shop Shop">
+    <meta property="og:description" content="Shop for products that do not exist and cannot even buy!">
+    <meta property="og:image" content="images/not-a-shop-shop-screenshot.png">
+    <meta property="og:url" content="https://milkndcoffee.github.io/merch-shop/index.html">
     <meta name="description" content="placeholder">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -19,16 +25,17 @@
         <!--HEADER|TITLE|CART-->
         <header>
             <div class="mobile-title">
-                <h1 class="mobile">SS</h1>
+                <h1 class="mobile">NaRSS</h1>
                 <img class="placeholder-title mobile" src="not-found.png" />
             </div>
             <div class="mobile-header">
-                <button><img onclick="openBar()" src="https://img.icons8.com/material-sharp/48/000000/menu.png"/></button>
+                <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/48/000000/menu.png"/>
                 <a class="cart"><img src="https://img.icons8.com/windows/64/000000/shopping-cart.png"/></a>
             </div>
-            <h1 class="desktop">Shop Shop</h1>
+            
+            <h1 class="desktop">Not a Real Shop Shop</h1>
             <div class="desktop-header">
-                <img onclick="openBar()" src="https://img.icons8.com/material-sharp/24/000000/menu.png"/>
+                <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/24/000000/menu.png"/>
                 <a class="cart"><img src="https://img.icons8.com/metro/26/000000/shopping-cart.png"/></a>
             </div>
         </header>
@@ -38,7 +45,7 @@
             <a href="#" class="nav-close" onclick="closeBar()">x</a>
             <a href="#">About</a>
             <a href="#">Shop</a>
-            <a href="#">Collection</a>
+            <a href="#">Lookbook</a>
             <a href="#">FAQ</a>
             <a href="#">Contact</a>
         </nav>
