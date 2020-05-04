@@ -53,19 +53,25 @@ a{
 .mobile{
     display: block;
 }
-.mobile-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 .mobile-title{
     display: flex;
     justify-content: space-evenly;
     font-size: 1.70rem;
 }
+.mobile-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.title-transition{
+    opacity: 0;
+    height: 0;
+    padding-bottom: 1rem;
+}
 
-    /*sidebar*/
-nav{
+    /*SIDE - bar*/
+#nav-id {
     z-index: 1;
     top: 0;
     left: 0;
@@ -97,6 +103,41 @@ nav a{
     font-size: 1.5rem;
 }
 
+    /*TOP - bar*/
+
+
+#shop-nav {
+    z-index: 1;
+    height: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    background-color: teal;
+    transition: 0.5s;
+    padding-top: 1rem;
+    position: absolute;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-shop{
+    display: flex;
+    bottom: 0;
+    position: absolute;
+    align-items: center;
+}
+#shop-button-id{
+    transition: transform 0.8s;
+}
+.active-shop-button{
+    transform: rotate(180deg);
+}
+.unactive-shop-button{
+    transition: transform 0.8s;
+    transform: rotate(180deg);
+}
 
     /*HIDING desktop components*/
 .desktop-header{
