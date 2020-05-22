@@ -5,6 +5,10 @@
     *note that img.placeholder-clothes::
         width is set to 375px for mobile, but it should be width 100%.
         for now because i have no images, it is set to 375px
+        
+        so for clothes it should be 
+        374/2 = 187 px each
+        or 372/2 = 186 px forextra space design wise
 */
 
 /*Placeholder(s)*/
@@ -21,6 +25,10 @@ img.placeholder-clothes{
     margin-top: 2.5rem;
     width:375px;
     height:auto;
+}
+img.placeholder-clothing-piece{
+    width: 186px;
+    height: auto;
 }
 
 
