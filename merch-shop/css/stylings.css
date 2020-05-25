@@ -112,9 +112,7 @@ nav a{
     font-size: 1.5rem;
 }
 
-    /*TOP - bar*/
-
-
+    /*SHOPnav - bar*/
 #shop-nav {
     z-index: 1;
     height: 0;
@@ -130,11 +128,9 @@ nav a{
     display: flex;
     flex-direction: column;
 }
-
 #shop-nav a{
     padding-right: 1.5rem;
 }
-
 .close-shop{
     display: flex;
     bottom: 0;
@@ -150,6 +146,45 @@ nav a{
 .unactive-shop-button{
     transition: transform 0.8s;
     transform: rotate(180deg);
+}
+#current-clothing-article{
+    color: rgb(255, 221, 126);
+    font-weight: bold;
+}
+
+    /*Article of Clothings*/
+section.clothing-articles {
+    display: block;
+    text-align: center;
+}
+section.clothing-articles figure{
+    display: inline-block;
+    margin: .05rem;
+    padding: .02rem;
+    margin-top: 0;
+    padding-top: 0;
+}
+section.clothing-articles figcaption{
+    font-size: .80rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: .50rem;
+}
+
+    /*Checkout nav button*/
+.checkout-follower{
+    z-index: 1; 
+    bottom: 0; 
+    right: 0;
+    padding: 1rem;
+    border-radius: .40rem;
+    margin:.50rem;
+    transition: 0.5s; 
+    display: flex;
+    height: auto; 
+    width: auto;
+    position: fixed;
+    color: white;
+    background-color: rgb(31, 31, 31);    
 }
 
     /*HIDING desktop components*/
