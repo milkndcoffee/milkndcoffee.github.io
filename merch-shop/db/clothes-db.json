@@ -1,0 +1,99 @@
+{
+  "product": [
+    {
+      "article": "Top",
+      "items": [
+        {
+          "id": "0",
+          "type": "",
+          "name": "",
+          "price": 0.00,
+          "description": "",
+          "img": ""
+        }
+      ]
+    },
+    {
+      "article": "Bottom",
+      "items": [
+        {
+          "id": "0",
+          "type": "",
+          "name": "",
+          "price": 0.00,
+          "description": "",
+          "img": ""
+        }
+      ]
+    },
+    {
+      "article": "Accessory",
+      "items": [
+        {
+          "id": "0",
+          "type": "Dad Hat",
+          "name": ":')",
+          "price": 5.99,
+          "description": "a classic dad hat that displays a classic mood.",
+          "img": ""
+        },
+        {
+          "id": "0",
+          "type": "Dad Hat",
+          "name": "i luv uwu",
+          "price": 5.99,
+          "description": "a perfect hat to give as a gift to a loved one or to yourself <3.",
+          "img": ""
+        },
+        {
+          "id": "0",
+          "type": "Dad Hat",
+          "name": "oh okay",
+          "price": 5.99,
+          "description": "you know that moment when your friends hang out without you and you just kinda brush it off.",
+          "img": ""
+        },
+        {
+          "id": "0",
+          "type": "Beanie",
+          "name": "mstrd",
+          "price": 14.99,
+          "description": "mustard ask you a question? (the 'd' is silent)",
+          "img": ""
+        },
+        {
+          "id": "0",
+          "type": "Beanie",
+          "name": "ktchp",
+          "price": 9.99,
+          "description": "hey man slow down, i can't ketchup.",
+          "img": ""
+        },
+        {
+          "id": "0",
+          "type": "Beanie",
+          "name": "rlsh",
+          "price": 9.99,
+          "description": "i proudly wear this hat with relish!",
+          "img": ""
+        },
+        {
+          "id": "0",
+          "type": "Bucket",
+          "name": "blck",
+          "price": 12.99,
+          "description": "the color of this hat is black.",
+          "img": ""
+        },
+        {
+          "id": "0",
+          "type": "Bucket",
+          "name": "buuucket",
+          "price": 15.99,
+          "description": "this is the description!",
+          "img": ""
+        }
+      ]
+    }
+  ]
+}

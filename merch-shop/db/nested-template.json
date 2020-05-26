@@ -1,0 +1,17 @@
+{
+    "product": [
+        {
+            "article": "",
+            "product_details": [
+                {
+                    "Id": 0,
+                    "type": "",
+                    "name": "",
+                    "price": 0.00,
+                    "description": "",
+                    "img": ""
+                }
+            ]
+        }
+    ]
+}
