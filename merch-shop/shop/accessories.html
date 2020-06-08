@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body onload="getData(clothing-data)">
+<body onload="getItemData('accessories'); appendSectionData('ye', 'yee', 'yeee', 'yeeee');">
   <div id="main-container">
     <!--HEADER|TITLE|CART-->
     <header>
@@ -61,7 +61,17 @@
     </nav>
 
     <!--CLOTHES - ACCSRS. -->
-    <main>
+    <main id="main-accs">
+
+      <!--TEMPLATE FOR TESTING-->
+      <section class="clothing-articles">
+        <header><h2 id="item-h2"></h2></header>
+        <figure>
+          <img id="item-img"/>
+          <figcaption id="item-figcaption"></figcaption>
+        </figure>
+      </section>
+
       <!--ACCSRS.-->
       <section class="clothing-articles">
         <header>

@@ -55,6 +55,14 @@
         },
         {
           "id": "0",
+          "type": "Dad Hat",
+          "name": "haha",
+          "price": 5.99,
+          "description": "its not funny.",
+          "img": ""
+        },
+        {
+          "id": "0",
           "type": "Beanie",
           "name": "mstrd",
           "price": 14.99,
