@@ -1,8 +1,10 @@
 /*TODO: 
-  
-  [6/8] function getItemData() : do the rest for other clothing items
-  [6/12] fixed appended DOM JSON data spacing.
-  [6/12] (low priority) create images for each item.
+  Priority (lowest to highest) : !, !!, !!!
+  Optional Priority : ~
+
+  [6/8 !!] function getItemData() : do the rest for other clothing items
+  [6/12 ~ !] edit appended DOM JSON data spacing.
+  [6/12 !] create images for each item.
   
 
   DONE [6/12]function appendSectionData : add onto body multiple DOM elements to <section>.

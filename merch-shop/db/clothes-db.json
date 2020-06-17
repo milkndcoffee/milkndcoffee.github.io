@@ -17,11 +17,83 @@
       "article": "Bottom",
       "items": [
         {
-          "id": "0",
-          "type": "",
-          "name": "",
-          "price": 0.00,
-          "description": "",
+          "id": "B0",
+          "type": "Denim",
+          "name": "Rppd Rglrwshd",
+          "price": 49.99,
+          "description": "Ripped denim jeans with a normal fit.",
+          "img": ""
+        },
+        {
+          "id": "B1",
+          "type": "Denim",
+          "name": "Sknny Blck",
+          "price": 59.99,
+          "description": "Black denim jeans with a skinny fit.",
+          "img": ""
+        },
+        {
+          "id": "B2",
+          "type": "Denim",
+          "name": "Rlxd Lghtwsh",
+          "price": 59.99,
+          "description": "Lightwashed denim jeans with a relaxed fit.",
+          "img": ""
+        },
+        {
+          "id": "B3",
+          "type": "Denim",
+          "name": "Blck Shrt",
+          "price": 19.99,
+          "description": "Cheapest product in this section bruv.",
+          "img": ""
+        },
+        {
+          "id": "B4",
+          "type": "Cropped",
+          "name": "void",
+          "price": 59.99,
+          "description": "cause like, its void of color ya know haha. or I guess color theory wise it has all the colors so this would be wrong but like void sounds so cool.",
+          "img": ""
+        },
+        {
+          "id": "B5",
+          "type": "Cropped",
+          "name": "muted",
+          "price": 59.99,
+          "description": "cause uh, when the colors are muted we add grey so uh.. yeah.",
+          "img": ""
+        },
+        {
+          "id": "B6",
+          "type": "Cropped",
+          "name": "dirty dirt",
+          "price": 59.99,
+          "description": "it's actually not that dirty!!",
+          "img": ""
+        },
+        {
+          "id": "B7",
+          "type": "Cropped",
+          "name": "plaid",
+          "price": 59.99,
+          "description": "for that kool sk8ter look ;)",
+          "img": ""
+        },
+        {
+          "id": "B8",
+          "type": "Sweats",
+          "name": "drawstrings",
+          "price": 39.99,
+          "description": "i mean why not?",
+          "img": ""
+        },
+        {
+          "id": "B9",
+          "type": "Sweats",
+          "name": "college ish",
+          "price": 39.99,
+          "description": "for that lazy relaxed college look mhmm",
           "img": ""
         }
       ]
