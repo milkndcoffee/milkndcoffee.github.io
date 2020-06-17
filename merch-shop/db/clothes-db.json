@@ -102,7 +102,7 @@
       "article": "Accessory",
       "items": [
         {
-          "id": "0",
+          "id": "C0",
           "type": "Dad Hat",
           "name": ":')",
           "price": 5.99,
@@ -110,7 +110,7 @@
           "img": ""
         },
         {
-          "id": "0",
+          "id": "C1",
           "type": "Dad Hat",
           "name": "i luv uwu",
           "price": 5.99,
@@ -118,7 +118,7 @@
           "img": ""
         },
         {
-          "id": "0",
+          "id": "C2",
           "type": "Dad Hat",
           "name": "oh okay",
           "price": 5.99,
@@ -126,7 +126,7 @@
           "img": ""
         },
         {
-          "id": "0",
+          "id": "C3",
           "type": "Dad Hat",
           "name": "haha",
           "price": 5.99,
@@ -134,7 +134,7 @@
           "img": ""
         },
         {
-          "id": "0",
+          "id": "C4",
           "type": "Beanie",
           "name": "mstrd",
           "price": 14.99,
@@ -142,7 +142,7 @@
           "img": ""
         },
         {
-          "id": "0",
+          "id": "C5",
           "type": "Beanie",
           "name": "ktchp",
           "price": 9.99,
@@ -150,7 +150,7 @@
           "img": ""
         },
         {
-          "id": "0",
+          "id": "C6",
           "type": "Beanie",
           "name": "rlsh",
           "price": 9.99,
@@ -158,7 +158,7 @@
           "img": ""
         },
         {
-          "id": "0",
+          "id": "C7",
           "type": "Bucket",
           "name": "blck",
           "price": 12.99,
@@ -166,7 +166,7 @@
           "img": ""
         },
         {
-          "id": "0",
+          "id": "C8",
           "type": "Bucket",
           "name": "buuucket",
           "price": 15.99,

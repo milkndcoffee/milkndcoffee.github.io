@@ -54,26 +54,21 @@ function openShopNav() {
 
 /*    ------------------
       /shop/.. functions
-      ------------------    */    
+      ------------------    */
 function getItemData(x) {
+
+  //FETCH ACCESSORIES
+
   if (x == "accessories") {
     let accsData = "";
-    var accs = "";
     data = "https://milkndcoffee.github.io/merch-shop/db/clothes-db.json"
     fetch(data)
       .then(response => response.json())
       .then(json => {
-        var jsonData = json;
-        var jsonString = JSON.stringify(json.product[2]);
-        accs = jsonString;
         accsData = json.product[2];
         console.log('accessories JSON :', accsData)
 
-        var count = 1;
-        var beanieC = 0;
-        var dadC = 0;
         var accsTypeObj = new Object();
-        var accsArr = new Array();
 
         /* 
           breaking apart the json file data so that we can section the data based on
@@ -112,18 +107,66 @@ function getItemData(x) {
         } console.log("END RESULT:", accsTypeObj);
 
         appendDataToBody(accsTypeObj, "accs");
-        
-        //var article = JSON.stringify(json.product[2].article);
-        //let clothes = JSON.stringify(json.product[2].items);
-        //console.log(article);
-        //console.log(clothes);
 
       });
     //console.log(accessories);
   } else if (x == "tops") {
     //FUTURE TODO::
+
   } else if (x == "bottoms") {
-    //FUTURE TODO::
+    
+    //"FETCH BOTTOMS"
+    
+    let bottData = "";
+    data = "https://milkndcoffee.github.io/merch-shop/db/clothes-db.json"
+    fetch(data)
+      .then(response => response.json())
+      .then(json => {
+        bottData = json.product[1];
+        console.log('accessories JSON :', bottData);
+
+        var bottTypeObj = new Object();
+
+        /* 
+          breaking apart the json file data so that we can section the data based on
+          the 'type' of the 'accessories' article.
+        */
+        for (i in bottData.items) {
+          if (bottData.items[i].type in bottTypeObj) {
+            for (const typeProp in bottTypeObj) {
+              if (typeProp == bottData.items[i].type) {
+                var newObj = {
+                  id: bottData.items[i].id,
+                  name: bottData.items[i].name,
+                  description: bottData.items[i].description,
+                  price: bottData.items[i].price,
+                  imgSrc: bottData.items[i].img
+                };
+                bottTypeObj[typeProp].push(newObj);
+              }
+            }
+          } else {
+            /*
+              the 'type' of the accessories does not exist within in the accessories object so we create one
+              we create the 'type' as the property and 
+              the id is assigned as an array containing an object of the fetched json data 
+            */
+            var typeArr = new Array();
+            typeArr.push({
+              id: bottData.items[i].id,
+              name: bottData.items[i].name,
+              description: bottData.items[i].description,
+              price: bottData.items[i].price,
+              imgSrc: bottData.items[i].img
+            });
+            bottTypeObj[bottData.items[i].type] = typeArr;
+          }
+        } console.log("END RESULT:", bottTypeObj);
+
+        appendDataToBody(bottTypeObj, "bottoms");
+
+      });
+
   } else {
     console.log("error");
   }
@@ -156,13 +199,12 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice) {
   return figureElement; //we are going to return this constructed dom element to use for appending towards their desired sects
 }
 
-function createSectionData(dataObj){
-  var mainInBody = document.getElementById("main-accs");
+function createSectionData(dataObj) {
   var sectElementArr = new Array();
   var loopCount = 0;
- 
+
   //sectioning off based of type
-  for (const dataType in dataObj){
+  for (const dataType in dataObj) {
     var tempSectEl = document.createElement("section");
     var tempHeaderEl = document.createElement("header");
     var tempH2El = document.createElement("h2");
@@ -173,7 +215,7 @@ function createSectionData(dataObj){
     tempSectEl.appendChild(tempHeaderEl);
 
     //going of the amount of items in a type
-    for (i = 0; i< dataObj[dataType].length; i++){
+    for (i = 0; i < dataObj[dataType].length; i++) {
       //for each 'type' of this 'object' do this:
 
       var figElement = createFigureData(
@@ -181,28 +223,35 @@ function createSectionData(dataObj){
         dataObj[dataType][i].imgSrc,
         dataObj[dataType][i].name,
         dataObj[dataType][i].price
-        );
-        
+      );
+
       tempSectEl.appendChild(figElement);
       tempSectEl.className = "clothing-articles";
     }
-    
+
     //storing it into the array we are going to be utilizing for appending
     sectElementArr[loopCount] = tempSectEl;
     loopCount++;
-    
+
   }
 
   return sectElementArr; //we are going to return an array of constructed DOM elements
 }
 
-function appendDataToBody(data, location){
-  if (location == 'accs'){
+function appendDataToBody(data, location) {
+  if (location == 'accs') {
     var mainInBody = document.getElementById("main-accs");
     var constructedData = createSectionData(data);
 
-  for (i=0; i<constructedData.length; i++){
-    mainInBody.appendChild(constructedData[i]);
+    for (i = 0; i < constructedData.length; i++) {
+      mainInBody.appendChild(constructedData[i]);
+    }
+  } else if (location == "bottoms"){
+    var mainInBody = document.getElementById("main-bottoms");
+    var constructedData = createSectionData(data);
+
+    for (i = 0; i < constructedData.length; i++) {
+      mainInBody.appendChild(constructedData[i]);
     }
   }
 }
