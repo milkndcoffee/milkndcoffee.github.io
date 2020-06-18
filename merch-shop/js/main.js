@@ -2,6 +2,7 @@
   Priority (lowest to highest) : !, !!, !!!
   Optional Priority : ~
 
+  [6/17 ~!!] add sizing in the db and functions :')
   [6/8 !!] function getItemData() : do the rest for other clothing items
   [6/12 ~ !] edit appended DOM JSON data spacing.
   [6/12 !] create images for each item.
@@ -170,7 +171,6 @@ function getItemData(x) {
   } else {
     console.log("error");
   }
-
 }
 
 function createFigureData(sectionId, itemImg, itemName, itemPrice) {
@@ -189,8 +189,15 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice) {
   //applying the nodes to the objects
   //imgElement.src = "../template_img.src";
   imgElement.className = "placeholder-clothing-piece";
-  imgElement.src = "not-found.png";
   figcaptionElement.innerHTML = itemCap;
+
+  if (itemImg == ""){
+    console.log("img currently does not exist");
+    imgElement.src = "not-found.png";
+  } else {
+    imgElement.src = itemImg;
+    console.log("img exists");
+  }
 
   //constructing the elements together
   figureElement.appendChild(imgElement);
@@ -232,7 +239,6 @@ function createSectionData(dataObj) {
     //storing it into the array we are going to be utilizing for appending
     sectElementArr[loopCount] = tempSectEl;
     loopCount++;
-
   }
 
   return sectElementArr; //we are going to return an array of constructed DOM elements
