@@ -4,10 +4,90 @@
       "article": "Top",
       "items": [
         {
-          "id": "0",
-          "type": "",
-          "name": "",
-          "price": 0.00,
+          "id": "A0",
+          "type": "Tee",
+          "name": "not basic bc its boxy",
+          "price": 19.99,
+          "description": "it's boxy!",
+          "img": ""
+        },
+        {
+          "id": "A1",
+          "type": "Tee",
+          "name": "striped nd boxy",
+          "price": 19.99,
+          "description": "this is also boxy just a bit stripey!",
+          "img": ""
+        },
+        {
+          "id": "A2",
+          "type": "Tee",
+          "name": "boxy again!",
+          "price": 19.99,
+          "description": "i sense a trend here.",
+          "img": ""
+        },
+        {
+          "id": "A3",
+          "type": "Long-sleeve",
+          "name": "clean denim",
+          "price": 24.99,
+          "description": "idk about you but clean > dirty",
+          "img": ""
+        },
+        {
+          "id": "A4",
+          "type": "Long-sleeve",
+          "name": "soft like cotton",
+          "price": 24.99,
+          "description": "it is what it is.",
+          "img": ""
+        },
+        {
+          "id": "A5",
+          "type": "Long-sleeve",
+          "name": "artsy guy/gal kinda flannel",
+          "price": 29.99,
+          "description": "this is like one of those vintage flannels that you find at a thrift shop but rarely appear.",
+          "img": ""
+        },
+        {
+          "id": "A6",
+          "type": "Sweatshirt",
+          "name": "orange (the fruit) hoodie",
+          "price": 39.99,
+          "description": "orange you glad you checked the description :)? haha, well i'm happy that you did. this is a grey hoodie with an orange logo and text stitched onto a cotton and polyster made hoodie. why? because it looks cool and if you like oranges, all the more you oughta buy this sweater.",
+          "img": ""
+        },
+        {
+          "id": "A7",
+          "type": "Sweatshirt",
+          "name": "apple hoodie",
+          "price": 39.99,
+          "description": "keeps the doctor away! a black hoodie with an apple (the fruit) logo and text stitched on a cotton and polyester made hoodie.",
+          "img": ""
+        },
+        {
+          "id": "A8",
+          "type": "Jacket",
+          "name": "invisible",
+          "price": 44.99,
+          "description": "this would look great on a grey hoodie tbh. ",
+          "img": ""
+        },
+        {
+          "id": "A9",
+          "type": "Jacket",
+          "name": "dramin",
+          "price": 44.99,
+          "description": "uhh so like denim + ramen. it's a denim jacket with ramen stitched on the back haha.",
+          "img": ""
+        },
+        {
+          "id": "A10",
+          "type": "Jacket",
+          "name": "v i n t a g e wndbrkr",
+          "price": 34.99,
           "description": "",
           "img": ""
         }
@@ -171,6 +251,46 @@
           "name": "buuucket",
           "price": 15.99,
           "description": "this is the description!",
+          "img": ""
+        },
+        {
+          "id": "C9",
+          "type": "Necklace",
+          "name": "bunny",
+          "price": 8.99,
+          "description": "cute wooden bunny necklace. like who wood-n't want one haha..",
+          "img": ""
+        },
+        {
+          "id": "C10",
+          "type": "Necklace",
+          "name": "silver rose",
+          "price": 20.99,
+          "description": "for the a e s t h e t i c.",
+          "img": ""
+        },
+        {
+          "id": "C11",
+          "type": "Watch",
+          "name": "bunny",
+          "price": 8.99,
+          "description": "cute wooden bunny necklace. like who wood-n't want one haha..",
+          "img": ""
+        },
+        {
+          "id": "C12",
+          "type": "Ring",
+          "name": "the ruler",
+          "price": 99.99,
+          "description": "for the kings and queens out there. made with titanium! (if this was a real product)",
+          "img": ""
+        },
+        {
+          "id": "C13",
+          "type": "Ring",
+          "name": "the lover",
+          "price": 98.99,
+          "description": "for the lovers and those seeking love. also made w titanium.",
           "img": ""
         }
       ]

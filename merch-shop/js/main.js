@@ -2,10 +2,14 @@
   Priority (lowest to highest) : !, !!, !!!
   Optional Priority : ~
 
-  [6/17 ~!!] add sizing in the db and functions :')
+  
   [6/8 !!] function getItemData() : do the rest for other clothing items
-  [6/12 ~ !] edit appended DOM JSON data spacing.
   [6/12 !] create images for each item.
+
+  //Opt
+  [6/19 ~ !] add search by price instead of default format
+  [6/17 ~ !!] add sizing in the db and functions :')
+  [6/12 ~ !] edit appended DOM JSON data spacing.
   
 
   DONE [6/12]function appendSectionData : add onto body multiple DOM elements to <section>.
@@ -192,7 +196,7 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice) {
   figcaptionElement.innerHTML = itemCap;
 
   if (itemImg == ""){
-    console.log("img currently does not exist");
+    console.log("img currently does not exist :", itemImg);
     imgElement.src = "not-found.png";
   } else {
     imgElement.src = itemImg;
