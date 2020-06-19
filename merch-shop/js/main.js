@@ -60,115 +60,88 @@ function openShopNav() {
 /*    ------------------
       /shop/.. functions
       ------------------    */
-function getItemData(x) {
 
-  //FETCH ACCESSORIES
+function jsonToObjByType(jsonData) {
+  var jsonTypeObj = new Object();
+
+  /* 
+    breaking apart the json file data so that we can section the data based on
+    the 'type' of the 'accessories' article.
+  */
+  for (i in jsonData.items) {
+    if (jsonData.items[i].type in jsonTypeObj) {
+      for (const typeProp in jsonTypeObj) {
+        if (typeProp == jsonData.items[i].type) {
+          var newObj = {
+            id: jsonData.items[i].id,
+            name: jsonData.items[i].name,
+            description: jsonData.items[i].description,
+            price: jsonData.items[i].price,
+            imgSrc: jsonData.items[i].img
+          };
+          jsonTypeObj[typeProp].push(newObj);
+        }
+      }
+    } else {
+      /*
+        the 'type' of the accessories does not exist within in the accessories object so we create one
+        we create the 'type' as the property and 
+        the id is assigned as an array containing an object of the fetched json data 
+      */
+      var typeArr = new Array();
+      typeArr.push({
+        id: jsonData.items[i].id,
+        name: jsonData.items[i].name,
+        description: jsonData.items[i].description,
+        price: jsonData.items[i].price,
+        imgSrc: jsonData.items[i].img
+      });
+      jsonTypeObj[jsonData.items[i].type] = typeArr;
+    }
+  } console.log("END RESULT:", jsonTypeObj);
+  return jsonTypeObj;
+}
+
+//FETCH CODE
+function getItemData(x) {
+  data = "https://milkndcoffee.github.io/merch-shop/db/clothes-db.json";
 
   if (x == "accessories") {
+    //"FETCH ACCS."
     let accsData = "";
-    data = "https://milkndcoffee.github.io/merch-shop/db/clothes-db.json"
     fetch(data)
       .then(response => response.json())
       .then(json => {
         accsData = json.product[2];
         console.log('accessories JSON :', accsData)
 
-        var accsTypeObj = new Object();
-
-        /* 
-          breaking apart the json file data so that we can section the data based on
-          the 'type' of the 'accessories' article.
-        */
-        for (i in accsData.items) {
-          if (accsData.items[i].type in accsTypeObj) {
-            for (const typeProp in accsTypeObj) {
-              if (typeProp == accsData.items[i].type) {
-                var newObj = {
-                  id: accsData.items[i].id,
-                  name: accsData.items[i].name,
-                  description: accsData.items[i].description,
-                  price: accsData.items[i].price,
-                  imgSrc: accsData.items[i].img
-                };
-                accsTypeObj[typeProp].push(newObj);
-              }
-            }
-          } else {
-            /*
-              the 'type' of the accessories does not exist within in the accessories object so we create one
-              we create the 'type' as the property and 
-              the id is assigned as an array containing an object of the fetched json data 
-            */
-            var typeArr = new Array();
-            typeArr.push({
-              id: accsData.items[i].id,
-              name: accsData.items[i].name,
-              description: accsData.items[i].description,
-              price: accsData.items[i].price,
-              imgSrc: accsData.items[i].img
-            });
-            accsTypeObj[accsData.items[i].type] = typeArr;
-          }
-        } console.log("END RESULT:", accsTypeObj);
-
-        appendDataToBody(accsTypeObj, "accs");
-
+        var accsJsonToObj = jsonToObjByType(accsData);
+        appendDataToBody(accsJsonToObj, "accs");
       });
-    //console.log(accessories);
-  } else if (x == "tops") {
-    //FUTURE TODO::
 
+  } else if (x == "tops") {
+    //"FETCH TOPS"
+    let topsData = "";
+    fetch(data)
+      .then(response => response.json())
+      .then(json => {
+        topsData = json.product[0];
+        console.log('tops JSON :', topsData)
+
+        var topsJsonToObj = jsonToObjByType(topsData);
+        appendDataToBody(topsJsonToObj, "tops");
+      });
   } else if (x == "bottoms") {
-    
     //"FETCH BOTTOMS"
-    
     let bottData = "";
-    data = "https://milkndcoffee.github.io/merch-shop/db/clothes-db.json"
     fetch(data)
       .then(response => response.json())
       .then(json => {
         bottData = json.product[1];
-        console.log('accessories JSON :', bottData);
+        console.log('bottoms JSON :', bottData);
 
-        var bottTypeObj = new Object();
-
-        /* 
-          breaking apart the json file data so that we can section the data based on
-          the 'type' of the 'accessories' article.
-        */
-        for (i in bottData.items) {
-          if (bottData.items[i].type in bottTypeObj) {
-            for (const typeProp in bottTypeObj) {
-              if (typeProp == bottData.items[i].type) {
-                var newObj = {
-                  id: bottData.items[i].id,
-                  name: bottData.items[i].name,
-                  description: bottData.items[i].description,
-                  price: bottData.items[i].price,
-                  imgSrc: bottData.items[i].img
-                };
-                bottTypeObj[typeProp].push(newObj);
-              }
-            }
-          } else {
-            /*
-              the 'type' of the accessories does not exist within in the accessories object so we create one
-              we create the 'type' as the property and 
-              the id is assigned as an array containing an object of the fetched json data 
-            */
-            var typeArr = new Array();
-            typeArr.push({
-              id: bottData.items[i].id,
-              name: bottData.items[i].name,
-              description: bottData.items[i].description,
-              price: bottData.items[i].price,
-              imgSrc: bottData.items[i].img
-            });
-            bottTypeObj[bottData.items[i].type] = typeArr;
-          }
-        } console.log("END RESULT:", bottTypeObj);
-
-        appendDataToBody(bottTypeObj, "bottoms");
+        var bottsJsonToObj = jsonToObjByType(bottData);
+        appendDataToBody(bottsJsonToObj, "bottoms");
 
       });
 
@@ -195,7 +168,7 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice) {
   imgElement.className = "placeholder-clothing-piece";
   figcaptionElement.innerHTML = itemCap;
 
-  if (itemImg == ""){
+  if (itemImg == "") {
     console.log("img currently does not exist :", itemImg);
     imgElement.src = "not-found.png";
   } else {
@@ -256,8 +229,15 @@ function appendDataToBody(data, location) {
     for (i = 0; i < constructedData.length; i++) {
       mainInBody.appendChild(constructedData[i]);
     }
-  } else if (location == "bottoms"){
+  } else if (location == "bottoms") {
     var mainInBody = document.getElementById("main-bottoms");
+    var constructedData = createSectionData(data);
+
+    for (i = 0; i < constructedData.length; i++) {
+      mainInBody.appendChild(constructedData[i]);
+    }
+  } else if (location == "tops") {
+    var mainInBody = document.getElementById("main-tops");
     var constructedData = createSectionData(data);
 
     for (i = 0; i < constructedData.length; i++) {
