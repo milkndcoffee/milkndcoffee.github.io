@@ -56,6 +56,34 @@ a{
     text-decoration: none;
 }
 
+.faq-list li{
+  margin-left: -2rem;
+  content: "\2022";
+  list-style: none; 
+  font-weight: bold;
+  display: inline-block;
+  align-self: center;
+  width: 90%;
+}
+.faq-q{
+  background: rgb(63, 63, 63);
+  color: rgb(255, 255, 255);
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+  margin-left: 2rem;
+}
+.faq-a{
+  color: rgb(122, 119, 167);
+  margin-bottom: 5rem;
+}
+.article-title {
+  background: rgb(63, 63, 63);
+  color: rgb(255, 255, 255);
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
 /* ------------------------------------------------------------------------------------ */
 /*Mobile Only Stylings*/
 .mobile{
@@ -212,6 +240,7 @@ section.clothing-articles figcaption{
     }
     main{
         margin-top: 2rem;
+        width: 50%;
     }
     .desktop-header{
         display: flex;
@@ -258,6 +287,31 @@ section.clothing-articles figcaption{
     footer{
         margin-top: 4rem;
     }
+    /*faq page*/
+    .faq-list li{
+      margin-left: -2rem;
+      content: "\2022";
+      list-style: none; 
+      font-weight: normal;
+      display: inline-block;
+      align-self: center;
+      width: 40%;
+    }
+    .faq-q{
+      background: rgb(63, 63, 63);
+      color: rgb(255, 255, 255);
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      padding-right: 2rem;
+      margin-left: 2rem;
+      text-align: left;
+    }
+    .faq-a{
+      color: rgb(0, 0, 0);
+      margin-bottom: 5rem;
+      text-align: left;
+    }
+
     /*hide mobile items*/
     .mobile{
         display: none;  
