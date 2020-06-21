@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!-- This website was updated by Adrian De Guzman, 5/22/20 -->
-
+<!-- This website was updated by Adrian De Guzman, 6/20/20 -->
 <html lang="en">
 
 <head>
@@ -16,33 +15,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body onload="pushUpAndFade()">
+<body onload="createSlide(1,1,1,1), onLoadThisSlide(1) ">
   <div id="main-container">
     <!--HEADER|TITLE|CART-->
     <header>
       <div class="mobile-title">
         <h1 class="mobile">NaRSS</h1>
-        <p class="mobile dir-name">/shop</p>
+        <p class="mobile dir-name">/lookbook</p>
       </div>
       <div class="mobile-header">
         <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/48/000000/menu.png" />
-        <div class="shop">
-          <img id="shop-button-id" onclick="openShopNav()"
-            src="https://img.icons8.com/android/48/000000/expand-arrow.png" />
-          <!--TOPBAR :: SHOP NAVIGATION -->
-          <nav id="shop-nav">
-            <a href="shop/tops.html">tops</a>
-            <a href="#">bottoms</a>
-            <a href="shop/accessories.html">accessories</a>
-
-          </nav>
-        </div>
         <a class="cart"><img src="https://img.icons8.com/windows/64/000000/shopping-cart.png" /></a>
       </div>
 
       <div class="desktop-title">
         <h1 class="desktop">Not a Real Shop Shop</h1>
-        <p class="desktop dir-name">/shop</p>
+        <p class="desktop dir-name">/lookbook</p>
       </div>
       <div class="desktop-header">
         <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/24/000000/menu.png" />
@@ -50,7 +38,7 @@
       </div>
     </header>
 
-    <!--SIDEBAR :: MAIN NAVIGATION -->
+    <!--SIDEBAR-->
     <nav id="nav-id">
       <a href="#" class="nav-close" onclick="closeBar()">x</a>
       <a href="index.html">about</a>
@@ -60,26 +48,33 @@
       <a href="contact.html">contact</a>
     </nav>
 
+    <!--MAIN - LOOKBOOK-->
+    <main id="main-lookbook">
+      <section class="slideshow-section" id="slideshow-sect">
 
+        <h1 class="article-title">lookbook</h1>
 
-    <!--CLOTHES
-            maybe turns this into a slideshow panel or display all clothes here-->
-    <main>
-      <img class="placeholder-clothes" src="not-found.png" />
+        <!--template sections that will be replaced by json db information-->
+        <section class="section-slide fade">
+          <div class="current-slide-indicator">1 / 4</div>
+          <img class="placeholder-clothes" src="not-found.png" >
+          <figcaption class="lookbook-cap">first image</figcaption>
+        </section>
 
-      <!--TOP-->
-      <section>
+        <section class="section-slide fade">
+          <div class="current-slide-indicator">2 / 4</div>
+          <img class="placeholder-clothes" src="not-found.png" >
+          <figcaption class="lookbook-cap">second image</figcaption>
+        </section>
 
-      </section>
+        <section class="section-slide fade">
+          <div class="current-slide-indicator">3 / 4</div>
+          <img class="placeholder-clothes" src="not-found.png" >
+          <figcaption class="lookbook-cap">third image</figcaption>
+        </section>
 
-      <!--BOTTOM-->
-      <section>
-
-      </section>
-
-      <!--ACCrs.-->
-      <section>
-
+        <a class="prev-slide-ind" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next-slide-ind" onclick="changeSlide(1)">&#10095;</a>
       </section>
     </main>
 
@@ -90,7 +85,6 @@
       <a href="https://icons8.com/icon/84026/menu">Menu icon by Icons8</a>
       <a class="desktop" href="https://icons8.com/icon/3538/shopping-cart">Shopping Cart icon by Icons8</a>
       <a class="mobile" href="https://icons8.com/icon/15893/shopping-cart">Shopping Cart icon by Icons8</a>
-      <a class="mobile" href="https://icons8.com/icon/5434/expand-arrow">Expand Arrow icon by Icons8</a>
     </footer>
   </div>
 </body>

@@ -245,3 +245,74 @@ function appendDataToBody(data, location) {
     }
   }
 }
+
+
+
+
+/*    -------------------
+      /lookbook functions
+      -------------------    */
+
+function createSlide(id, src, cap, itemIds){
+  /* <div class="section-slide fade">
+          <div class="current-slide-indicator">2 / 3</div>
+          <img class="placeholder-clothes" src="img_snow_wide.jpg" >
+          <figcaption class="lookbook-cap">Caption Two</figcaption>
+        </div>
+      </div>
+  */
+
+ //CHANGE PARAMETERS INTO AN ARRAY OF OBJECTS THAT CONTAINS
+ //id, src, cap, itemIds, THAT WAY WE CAN MAKE A MAX (AMOUNT OF SLIDE) AND CURRENT SLIDE for the currentSlideIndDOM
+  var slideDOM = document.createElement("section");
+  var currentSlideIndDOM = document.createElement("div");
+  var imgDOM = document.createElement("img");
+  var imgCapDOM = document.createElement("figcaption");
+
+  //class assign
+  slideDOM.className = "section-slide";
+  currentSlideIndDOM.className = "current-slide-indicator";
+  imgDOM.className = "placeholder-clothes";
+  imgCapDOM.className = "lookbook-cap";
+
+  //testing purposes
+  imgDOM.src = "not-found.png";
+  imgCapDOM.innerHTML = "fourth image";
+  currentSlideIndDOM.innerText = "4 / 4";
+
+  //constructing the elements together
+  slideDOM.appendChild(currentSlideIndDOM);
+  slideDOM.appendChild(imgDOM);
+  slideDOM.appendChild(imgCapDOM);
+
+  var mainInLookbook = document.getElementById("slideshow-sect");
+  mainInLookbook.appendChild(slideDOM);
+}
+
+  /*  
+  slideshow functions
+  to allow switching through the many pictures in the lookbook.
+  */
+function changeSlide(index) {
+  displaySlideshow(slideIndex += index);
+}
+function onLoadThisSlide(slide) {
+  //called in the body onload
+  displaySlideshow(slideIndex = slide);
+}
+function displaySlideshow(currSlideIndex) {
+  var slideSects = document.getElementsByClassName("section-slide");
+  //console.log("slideSect.length: ", slideSects.length);
+  //console.log("currslideIndex: ", currSlideIndex);
+  if (currSlideIndex > slideSects.length) {
+    //RESETING after hitting max length
+    currSlideIndex = 1; 
+    console.log("RESET currSlideIndex: ", currSlideIndex); 
+  }
+  for (i = 0; i < (slideSects.length); i++) {
+    //here we are hiding each slide
+    slideSects[i].style.display = "none";
+  }
+  //console.log("currSlide-1 :",[currSlideIndex-1]);
+  slideSects[currSlideIndex - 1].style.display = "block"; //display current slideSection 
+}

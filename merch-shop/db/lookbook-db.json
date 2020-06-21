@@ -1,0 +1,22 @@
+{
+  "lookbook": [
+    {
+      "id": "00",
+      "imgSrc": "url",
+      "imgCap": "string",
+      "itemIds": ["A0", "B0", "C0"]
+    },
+    {
+      "id": "01",
+      "imgSrc": "url",
+      "imgCap": "string",
+      "itemIds": ["A1", "B1", "C0"]
+    },
+    {
+      "id": "02",
+      "imgSrc": "url",
+      "imgCap": "string",
+      "itemIds": ["A2", "B3", "C4"]
+    }
+  ]
+}
