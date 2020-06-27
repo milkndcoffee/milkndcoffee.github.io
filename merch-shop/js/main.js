@@ -18,6 +18,7 @@
   
 */
 
+
 //NAVBAR
 function openBar() {
   navBar = document.getElementById("nav-id");
@@ -253,7 +254,21 @@ function appendDataToBody(data, location) {
       /lookbook functions
       -------------------    */
 
-function createSlide(id, src, cap, itemIds){
+function fetchLookbook() {
+  var url = "https://milkndcoffee.github.io/merch-shop/db/lookbook-db.json";
+  let jsonData = "";
+  fetch(url)
+    .then(response => response.json())
+    .then(json => {
+      jsonData = json.lookbook;
+      console.log('lookbook json :', jsonData);
+
+      appendSlidesFromDb(jsonData);
+      onLoadThisSlide(1);
+    });
+}
+
+function createSlideDOM(objSlide, current, max) {
   /* <div class="section-slide fade">
           <div class="current-slide-indicator">2 / 3</div>
           <img class="placeholder-clothes" src="img_snow_wide.jpg" >
@@ -261,13 +276,12 @@ function createSlide(id, src, cap, itemIds){
         </div>
       </div>
   */
-
- //CHANGE PARAMETERS INTO AN ARRAY OF OBJECTS THAT CONTAINS
- //id, src, cap, itemIds, THAT WAY WE CAN MAKE A MAX (AMOUNT OF SLIDE) AND CURRENT SLIDE for the currentSlideIndDOM
   var slideDOM = document.createElement("section");
   var currentSlideIndDOM = document.createElement("div");
   var imgDOM = document.createElement("img");
   var imgCapDOM = document.createElement("figcaption");
+  var ulListDOM = document.createElement("ul");
+  var liListDOM = document.createElement("li");
 
   //class assign
   slideDOM.className = "section-slide";
@@ -275,44 +289,81 @@ function createSlide(id, src, cap, itemIds){
   imgDOM.className = "placeholder-clothes";
   imgCapDOM.className = "lookbook-cap";
 
-  //testing purposes
-  imgDOM.src = "not-found.png";
-  imgCapDOM.innerHTML = "fourth image";
-  currentSlideIndDOM.innerText = "4 / 4";
+  //passing values from current db object
+  liListDOM.innerText = objSlide.itemIds;
+  imgDOM.src = objSlide.imgSrc;
+  imgCapDOM.innerHTML = objSlide.imgCap;
+  currentSlideIndDOM.innerText = current + " / " + max;
+
+  //styling
+  liListDOM.style = "list-style: none; display: inline-block; align-self: center; margin-left: -2.35rem;";
 
   //constructing the elements together
   slideDOM.appendChild(currentSlideIndDOM);
   slideDOM.appendChild(imgDOM);
   slideDOM.appendChild(imgCapDOM);
+  ulListDOM.appendChild(liListDOM);
+  slideDOM.appendChild(ulListDOM);
 
-  var mainInLookbook = document.getElementById("slideshow-sect");
-  mainInLookbook.appendChild(slideDOM);
+  return (slideDOM);
 }
 
-  /*  
-  slideshow functions
-  to allow switching through the many pictures in the lookbook.
-  */
-function changeSlide(index) {
-  displaySlideshow(slideIndex += index);
+function constructSlidesFromDb(arrayData) {
+  var arrSlideDOM = [];
+  for (i = 0; i < arrayData.length; i++) {
+    arrSlideDOM[i] = createSlideDOM(arrayData[i], (i + 1), arrayData.length);
+
+  }
+  return arrSlideDOM;
 }
+
+function appendSlidesFromDb(arrayData) {
+  var slideShowSectInHTML = document.getElementById("slideshow-sect");
+  var arrayDOM = constructSlidesFromDb(arrayData);
+
+  for (i = 0; i < arrayDOM.length; i++) {
+    console.log(arrayDOM[i]);
+    slideShowSectInHTML.appendChild(arrayDOM[i]);
+  }
+}
+
+/*  
+slideshow functions
+to allow switching through the many pictures in the lookbook.
+*/
 function onLoadThisSlide(slide) {
-  //called in the body onload
+  //initializing the slide index variable.
   displaySlideshow(slideIndex = slide);
 }
+
+function changeSlide(n) {
+  var maxSlides = document.getElementsByClassName("section-slide").length;
+
+  //limiting the slideIndex to the length of the maxSlides.
+  if (slideIndex <= 0) {
+    slideIndex = maxSlides;
+  } else if (slideIndex > maxSlides) {
+    slideIndex = 1;
+  }
+
+  var result = (slideIndex += n);
+  displaySlideshow(result);
+}
+
 function displaySlideshow(currSlideIndex) {
   var slideSects = document.getElementsByClassName("section-slide");
-  //console.log("slideSect.length: ", slideSects.length);
-  //console.log("currslideIndex: ", currSlideIndex);
-  if (currSlideIndex > slideSects.length) {
+  var slidesMax = slideSects.length;
+
+  if (currSlideIndex > slidesMax) {
     //RESETING after hitting max length
-    currSlideIndex = 1; 
-    console.log("RESET currSlideIndex: ", currSlideIndex); 
+    currSlideIndex = 1;
+  } else if (currSlideIndex <= 0) {
+    currSlideIndex = slidesMax;
   }
   for (i = 0; i < (slideSects.length); i++) {
     //here we are hiding each slide
     slideSects[i].style.display = "none";
   }
-  //console.log("currSlide-1 :",[currSlideIndex-1]);
   slideSects[currSlideIndex - 1].style.display = "block"; //display current slideSection 
 }
+

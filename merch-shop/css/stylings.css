@@ -56,36 +56,7 @@ a{
     text-decoration: none;
 }
 
-  /*faq*/
-.faq-list li{
-  width: 90%;
-  margin-left: -2rem;
-  content: "\2022";
-  list-style: none; 
-  font-weight: bold;
-  display: inline-block;
-  align-self: center;
-  
-}
-.faq-q{
-  background: rgb(63, 63, 63);
-  color: rgb(255, 255, 255);
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-right: 2rem;
-  margin-left: 2rem;
-}
-.faq-a{
-  color: rgb(122, 119, 167);
-  margin-bottom: 5rem;
-}
-.article-title {
- 
-  background: rgb(63, 63, 63);
-  color: rgb(255, 255, 255);
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-}
+
 
 /* ------------------------------------------------------------------------------------ */
 /*Mobile Only Stylings*/
@@ -108,7 +79,13 @@ a{
     justify-content: space-between;
     align-items: center;
 }
-
+.article-title {
+  background: rgb(63, 63, 63);
+  color: rgb(255, 255, 255);
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  
+}
 
     /*SIDE - bar*/
 #nav-id {
@@ -218,7 +195,38 @@ section.clothing-articles figcaption{
     background-color: rgb(31, 31, 31);    
 }
 
-    /*lookbook styling */
+    /*faq.html*/
+.faq-sect {
+  width: 90vw;
+  position: relative;
+  margin: auto;
+}
+.faq-list li{
+  width: 90vw;
+  position: relative;
+  margin: auto;
+  margin-left: -2rem;
+  content: "\2022";
+  list-style: none; 
+  font-weight: bold;
+  display: inline-block;
+  align-self: center;
+  
+}
+.faq-q{
+  background: rgb(63, 63, 63);
+  color: rgb(255, 255, 255);
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+  margin-left: 2rem;
+}
+.faq-a{
+  color: rgb(122, 119, 167);
+  margin-bottom: 5rem;
+}
+
+    /*lookbook.html styling */
 .slideshow-section{
   width: 90vw;
   position: relative;
@@ -254,7 +262,7 @@ section.clothing-articles figcaption{
   margin-bottom: -2rem;
 }
 
-/* fading animation */
+    /* fading animation */
 .fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
@@ -268,6 +276,50 @@ section.clothing-articles figcaption{
 @keyframes fade {
   from {opacity: .5} 
   to {opacity: 1}
+}
+
+#contact-page-id{
+  width: 90vw;
+  text-align: center;
+}
+.form-container{
+  margin: auto;
+  width: 85vw;
+  background-color: rgb(245, 244, 243);
+  border-radius: 4px;
+}
+.form-container label{
+  display: inline-block;
+  padding: .5rem;
+  padding-top: 1rem;
+  
+}
+.form-container input[type=text], select, textarea{
+  align-items: center;
+  width: 50%;
+  padding: 12px;
+  font-size: 10pt;
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: .3rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  resize: none;
+}
+.form-container input[type=submit]{
+  font-size: 9pt;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 1rem;
+  margin-top: 1.5rem;
+  background-color: #5a5a5a;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: .3rem;
+}
+.mailto{
+  display: inline-block;
+  font-size: 8pt;
+  margin-top: 1rem;
+  
 }
 
     /*HIDING desktop components*/
