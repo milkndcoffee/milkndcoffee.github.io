@@ -99,13 +99,13 @@ function jsonToObjByType(jsonData) {
       });
       jsonTypeObj[jsonData.items[i].type] = typeArr;
     }
-  } console.log("END RESULT:", jsonTypeObj);
+  } //console.log("END RESULT:", jsonTypeObj);
   return jsonTypeObj;
 }
 
 //FETCH CODE
 function getItemData(x) {
-  data = "https://milkndcoffee.github.io/merch-shop/db/clothes-db.json";
+  var data = "https://milkndcoffee.github.io/merch-shop/db/clothes-db.json";
 
   if (x == "accessories") {
     //"FETCH ACCS."
@@ -119,7 +119,6 @@ function getItemData(x) {
         var accsJsonToObj = jsonToObjByType(accsData);
         appendDataToBody(accsJsonToObj, "accs");
       });
-
   } else if (x == "tops") {
     //"FETCH TOPS"
     let topsData = "";
@@ -145,7 +144,6 @@ function getItemData(x) {
         appendDataToBody(bottsJsonToObj, "bottoms");
 
       });
-
   } else {
     console.log("error");
   }
@@ -218,7 +216,6 @@ function createSectionData(dataObj) {
     sectElementArr[loopCount] = tempSectEl;
     loopCount++;
   }
-
   return sectElementArr; //we are going to return an array of constructed DOM elements
 }
 
@@ -247,7 +244,9 @@ function appendDataToBody(data, location) {
   }
 }
 
+function getSectData(){
 
+}
 
 
 /*    -------------------
@@ -256,19 +255,42 @@ function appendDataToBody(data, location) {
 
 function fetchLookbook() {
   var url = "https://milkndcoffee.github.io/merch-shop/db/lookbook-db.json";
+  let idUrl = "https://milkndcoffee.github.io/merch-shop/db/clothes-db.json"
   let jsonData = "";
   fetch(url)
     .then(response => response.json())
     .then(json => {
       jsonData = json.lookbook;
       console.log('lookbook json :', jsonData);
-
-      appendSlidesFromDb(jsonData);
-      onLoadThisSlide(1);
+      var arrOfObjIds = new Array;
+      
+      fetch(idUrl)
+      .then(response => response.json())
+      .then(json => {
+        clothData = json;
+        var obj1 = jsonToObjByType(clothData.product[0]);
+        var obj2 = jsonToObjByType(clothData.product[1]);
+        var obj3 = jsonToObjByType(clothData.product[2]);
+        let objAll = {...obj1, ...obj2, ...obj3};
+        //var arrOfObjIds = new Array;
+        for (const c in objAll){
+          for (i=0; i<objAll[c].length; i++){
+            arrOfObjIds.push({
+              id: objAll[c][i].id,
+              name: objAll[c][i].name,
+              article: c
+            });
+          }
+        }
+        console.log(arrOfObjIds);
+        appendSlidesFromDb(jsonData, arrOfObjIds);
+        onLoadThisSlide(1);
+      });
+      
     });
 }
 
-function createSlideDOM(objSlide, current, max) {
+function createSlideDOM(objSlide, current, max, arrOfObjIds) {
   /* <div class="section-slide fade">
           <div class="current-slide-indicator">2 / 3</div>
           <img class="placeholder-clothes" src="img_snow_wide.jpg" >
@@ -280,8 +302,11 @@ function createSlideDOM(objSlide, current, max) {
   var currentSlideIndDOM = document.createElement("div");
   var imgDOM = document.createElement("img");
   var imgCapDOM = document.createElement("figcaption");
+
+  //for clothing id's
+  var h2ListDOM = document.createElement("h2");
   var ulListDOM = document.createElement("ul");
-  var liListDOM = document.createElement("li");
+  //var liListDOM = document.createElement("li");
 
   //class assign
   slideDOM.className = "section-slide";
@@ -290,39 +315,52 @@ function createSlideDOM(objSlide, current, max) {
   imgCapDOM.className = "lookbook-cap";
 
   //passing values from current db object
-  liListDOM.innerText = objSlide.itemIds;
   imgDOM.src = objSlide.imgSrc;
   imgCapDOM.innerHTML = objSlide.imgCap;
   currentSlideIndDOM.innerText = current + " / " + max;
+  h2ListDOM.innerText = "cop the style:"
+  h2ListDOM.style.fontSize = "17pt";
 
-  //styling
-  liListDOM.style = "list-style: none; display: inline-block; align-self: center; margin-left: -2.35rem;";
+ //constructing our list
+  for (var i=0; i< objSlide.itemIds.length; i++){
+    for (var arrIndex=0; arrIndex < arrOfObjIds.length; arrIndex++){
+      if (objSlide.itemIds[i] == arrOfObjIds[arrIndex].id){
+        console.log("objSlide ID:", arrOfObjIds[arrIndex].id, arrOfObjIds[arrIndex].name);
+        var tempLiListDOM = document.createElement("li");
+        tempLiListDOM.innerHTML = "<b>"+arrOfObjIds[arrIndex].article+ "</b>: " +arrOfObjIds[arrIndex].name;
+        tempLiListDOM.className = "lookbook-list";
+        ulListDOM.appendChild(tempLiListDOM);
+      }
+    }
+  }
 
   //constructing the elements together
   slideDOM.appendChild(currentSlideIndDOM);
   slideDOM.appendChild(imgDOM);
   slideDOM.appendChild(imgCapDOM);
-  ulListDOM.appendChild(liListDOM);
+  slideDOM.appendChild(h2ListDOM);
   slideDOM.appendChild(ulListDOM);
-
+  
   return (slideDOM);
 }
 
-function constructSlidesFromDb(arrayData) {
+function constructSlidesFromDb(arrayData, arrOfObjIds) {
   var arrSlideDOM = [];
-  for (i = 0; i < arrayData.length; i++) {
-    arrSlideDOM[i] = createSlideDOM(arrayData[i], (i + 1), arrayData.length);
-
+  for (var i = 0; i < arrayData.length; i++) {
+    console.log("constructed slide #:", i);
+    //arrSlideDOM[i] = createSlideDOM(arrayData[i], (i + 1), arrayData.length, arrOfObjIds);
+    arrSlideDOM.push(createSlideDOM(arrayData[i], (i + 1), arrayData.length, arrOfObjIds));
+    //console.log("constructed slide #:", arrSlideDOM);
   }
   return arrSlideDOM;
 }
 
-function appendSlidesFromDb(arrayData) {
+function appendSlidesFromDb(arrayData, arrOfObjIds) {
   var slideShowSectInHTML = document.getElementById("slideshow-sect");
-  var arrayDOM = constructSlidesFromDb(arrayData);
+  var arrayDOM = constructSlidesFromDb(arrayData, arrOfObjIds);
 
   for (i = 0; i < arrayDOM.length; i++) {
-    console.log(arrayDOM[i]);
+    console.log("arrayDOM: ",arrayDOM[i], arrayDOM.length);
     slideShowSectInHTML.appendChild(arrayDOM[i]);
   }
 }

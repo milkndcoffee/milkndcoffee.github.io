@@ -10,7 +10,7 @@
       "id": "01",
       "imgSrc": "url",
       "imgCap": "string",
-      "itemIds": ["A1", "B1", "C0"]
+      "itemIds": ["A1", "B1", "C1"]
     },
     {
       "id": "02",
