@@ -26,7 +26,7 @@ img.placeholder-title {
 
 img.placeholder-clothes {
   margin-top: 2.5rem;
-  width: 375px;
+  width: 100%;
   height: auto;
 }
 
@@ -92,6 +92,14 @@ a {
 }
 
 .article-title {
+  width: 90vw;
+  display: inline-block;
+  background: rgb(63, 63, 63);
+  color: rgb(255, 255, 255);
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+.h1-title {
   width: 90vw;
   display: inline-block;
   background: rgb(63, 63, 63);
@@ -256,11 +264,18 @@ section.clothing-articles figcaption {
   padding-bottom: .5rem;
   padding-right: 2rem;
   margin-left: 2rem;
+  margin-bottom: -.5rem;
 }
 
 .faq-a {
-  color: rgb(122, 119, 167);
-  margin-bottom: 5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+  display: inline-block;
+  text-align: center;
+  margin-left: auto;
+  font-size: 10pt;
+  padding: auto;
+  margin-bottom: 2rem;
 }
 
 /*lookbook.html styling */
@@ -383,6 +398,26 @@ section.clothing-articles figcaption {
   display: inline-block;
   font-size: 8pt;
   margin-top: 1rem;
+}
+
+/* index css */
+#main-index{
+  width: 90vw;
+}
+.default-sect{
+  width: 85vw;
+  display: inline-block;
+}
+.default-sect p{
+  text-align: center; 
+  font-size: 10pt;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  width: 85vw;
+  background-color: rgb(245, 244, 243);
+  border-radius: 4px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 /*HIDING desktop components*/

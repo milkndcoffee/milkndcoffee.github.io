@@ -172,7 +172,7 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice) {
     imgElement.src = "not-found.png";
   } else {
     imgElement.src = itemImg;
-    console.log("img exists");
+    console.log("img exists: ", imgElement.src);
   }
 
   //constructing the elements together
@@ -348,9 +348,7 @@ function constructSlidesFromDb(arrayData, arrOfObjIds) {
   var arrSlideDOM = [];
   for (var i = 0; i < arrayData.length; i++) {
     console.log("constructed slide #:", i);
-    //arrSlideDOM[i] = createSlideDOM(arrayData[i], (i + 1), arrayData.length, arrOfObjIds);
     arrSlideDOM.push(createSlideDOM(arrayData[i], (i + 1), arrayData.length, arrOfObjIds));
-    //console.log("constructed slide #:", arrSlideDOM);
   }
   return arrSlideDOM;
 }
