@@ -149,7 +149,7 @@ function getItemData(x) {
   }
 }
 
-function createFigureData(sectionId, itemImg, itemName, itemPrice) {
+function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
   //element initialization
   var figureElement = document.createElement("figure");
   var imgElement = document.createElement("img");
@@ -168,18 +168,59 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice) {
   figcaptionElement.innerHTML = itemCap;
 
   if (itemImg == "") {
-    console.log("img currently does not exist :", itemImg);
-    imgElement.src = "not-found.png";
+    console.log("img currently does not exist for:", itemName,);
+    imgElement.src = "../images/no-images.png";
   } else {
     imgElement.src = itemImg;
     console.log("img exists: ", imgElement.src);
   }
+
+  //onclick of the specific element will bring up a popup
+  figureElement.addEventListener("click", function(){bringUpItemData(sectId, itemImg, itemName, itemPrice, itemDesc);});
 
   //constructing the elements together
   figureElement.appendChild(imgElement);
   figureElement.appendChild(figcaptionElement);
 
   return figureElement; //we are going to return this constructed dom element to use for appending towards their desired sects
+}
+
+// here we're going to bring up the item that allows the user to put items into the cart!
+function bringUpItemData(id, itemImg, name, price, desc){
+  var imgElement = document.createElement("img");
+  var imgDownArrow = document.createElement("img");
+  var itemData = document.getElementsByClassName("article-item-pop");
+  var h2 = document.createElement("h2");
+  var p = document.createElement("p");
+  var sect = document.createElement("section")
+  var figCap = document.createElement("figcaption");
+
+  //top bar that controls closing the popup
+  imgDownArrow.src = "https://img.icons8.com/android/48/000000/expand-arrow.png";
+  imgDownArrow.style.width = "5%";
+  imgDownArrow.style.height = "auto";
+  imgDownArrow.classList.add("active-popup-down-arrow");
+  imgDownArrow.addEventListener("click", function(){
+    itemData[0].classList.remove("active-popup");
+    itemData[0].innerHTML = "";
+  }); 
+
+  //constructing popup info
+  h2.innerText = name;
+  imgElement.src = itemImg;
+  imgElement.style.width = "70%";
+  imgElement.style.height = "auto";
+  figCap.innerHTML = "$" + price + "\n" + desc;
+
+  sect.classList.add("active-popup-item-info");
+  sect.appendChild(h2);
+  sect.appendChild(imgElement);
+  sect.appendChild(figCap);
+
+  itemData[0].appendChild(imgDownArrow);
+  itemData[0].appendChild(sect);
+  console.log("CLICKED", id);
+  itemData[0].classList.add("active-popup");
 }
 
 function createSectionData(dataObj) {
@@ -200,12 +241,12 @@ function createSectionData(dataObj) {
     //going of the amount of items in a type
     for (i = 0; i < dataObj[dataType].length; i++) {
       //for each 'type' of this 'object' do this:
-
       var figElement = createFigureData(
         dataObj[dataType][i].id,
         dataObj[dataType][i].imgSrc,
         dataObj[dataType][i].name,
-        dataObj[dataType][i].price
+        dataObj[dataType][i].price,
+        dataObj[dataType][i].description
       );
 
       tempSectEl.appendChild(figElement);
@@ -244,9 +285,6 @@ function appendDataToBody(data, location) {
   }
 }
 
-function getSectData(){
-
-}
 
 
 /*    -------------------
