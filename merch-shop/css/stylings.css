@@ -1,5 +1,5 @@
 /*  
-    Stylings Created by Adrian De Guzman 4/27/20
+    Stylings Created by Adrian De Guzman 7/08/20
     TODO:
     -developed in mobile first approach +flexbox
     *note that img.placeholder-clothes::
@@ -160,26 +160,45 @@ a {
   position: fixed;
   overflow-y: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .active-popup{
-  height: 88%;
+  display: inline-block;
+  height: 75%;
   opacity: 1;
   border-radius: 20px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 .active-popup-down-arrow{
-  display: inline-block;
   margin: auto;
   margin-top: 0;
 }
 .active-popup-item-info{
-  margin: auto;
-  margin-top: -60%;
+  background-color: rgb(220, 221, 221);
   border-radius: 10px;
+  max-width: 90%;
+  margin: auto;
+  padding: 4% 2% 4% 2%;
 }
-
+.add-to-cart{
+  border: none;
+  z-index: 1;
+  right: 0;
+  padding: 4%;
+  margin: 4%;
+  margin-top: 2%;
+  border-radius: .40rem;
+  display: flex;
+  height: auto;
+  width: auto;
+  position: fixed;
+  color: white;
+  background-color: rgb(54, 54, 54);
+}
 
 /*SHOPnav - bar*/
 
@@ -265,7 +284,6 @@ section.clothing-articles figcaption {
   padding: 1rem;
   border-radius: .40rem;
   margin: .50rem;
-  transition: 0.5s;
   display: flex;
   height: auto;
   width: auto;

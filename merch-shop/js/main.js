@@ -169,14 +169,20 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
 
   if (itemImg == "") {
     console.log("img currently does not exist for:", itemName,);
-    imgElement.src = "../images/no-images.png";
+    itemImg = "https://raw.githubusercontent.com/milkndcoffee/milkndcoffee.github.io/master/merch-shop/images/no-image.png";
+    imgElement.src = itemImg;
   } else {
     imgElement.src = itemImg;
     console.log("img exists: ", imgElement.src);
   }
 
   //onclick of the specific element will bring up a popup
-  figureElement.addEventListener("click", function(){bringUpItemData(sectId, itemImg, itemName, itemPrice, itemDesc);});
+  figureElement.addEventListener("click", function(){
+    //if code is to prevent multiple item info to display from multiple tapping
+    if (document.getElementsByClassName("article-item-pop")[0].classList.contains("active-popup") == false){
+      bringUpItemData(sectId, itemImg, itemName, itemPrice, itemDesc);
+    }
+  });
 
   //constructing the elements together
   figureElement.appendChild(imgElement);
@@ -187,6 +193,8 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
 
 // here we're going to bring up the item that allows the user to put items into the cart!
 function bringUpItemData(id, itemImg, name, price, desc){
+  var itemClicked = true;
+  
   var imgElement = document.createElement("img");
   var imgDownArrow = document.createElement("img");
   var itemData = document.getElementsByClassName("article-item-pop");
@@ -194,6 +202,7 @@ function bringUpItemData(id, itemImg, name, price, desc){
   var p = document.createElement("p");
   var sect = document.createElement("section")
   var figCap = document.createElement("figcaption");
+  var button = document.createElement("button");
 
   //top bar that controls closing the popup
   imgDownArrow.src = "https://img.icons8.com/android/48/000000/expand-arrow.png";
@@ -202,23 +211,32 @@ function bringUpItemData(id, itemImg, name, price, desc){
   imgDownArrow.classList.add("active-popup-down-arrow");
   imgDownArrow.addEventListener("click", function(){
     itemData[0].classList.remove("active-popup");
+    itemClicked = false;
     itemData[0].innerHTML = "";
   }); 
 
-  //constructing popup info
+  //item popup info
   h2.innerText = name;
   imgElement.src = itemImg;
   imgElement.style.width = "70%";
   imgElement.style.height = "auto";
-  figCap.innerHTML = "$" + price + "\n" + desc;
+  imgElement.style.borderRadius = "4px";
+  figCap.innerHTML = "$" + price;
+  p.innerText = desc;
+  
+  //add to cart button
+  button.classList.add("add-to-cart");
+  button.innerText = "add to cart";
 
   sect.classList.add("active-popup-item-info");
   sect.appendChild(h2);
   sect.appendChild(imgElement);
   sect.appendChild(figCap);
+  sect.appendChild(p);
 
   itemData[0].appendChild(imgDownArrow);
   itemData[0].appendChild(sect);
+  itemData[0].appendChild(button);
   console.log("CLICKED", id);
   itemData[0].classList.add("active-popup");
 }
