@@ -31,7 +31,7 @@ img.placeholder-clothes {
 }
 
 img.placeholder-clothing-piece {
-  width: 186px;
+  width: 42vw;
   height: auto;
 }
 
@@ -257,12 +257,14 @@ a {
 /*Article of Clothings*/
 
 section.clothing-articles {
-  display: block;
+  display: inline-block;
   text-align: center;
 }
 
 section.clothing-articles figure {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
   margin: .05rem;
   padding: .02rem;
   margin-top: 0;
@@ -270,9 +272,11 @@ section.clothing-articles figure {
 }
 
 section.clothing-articles figcaption {
+  
   font-size: .80rem;
   font-family: 'Montserrat', sans-serif;
   margin-bottom: .50rem;
+  
 }
 
 /*Checkout nav button*/
