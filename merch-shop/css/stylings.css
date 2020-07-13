@@ -108,8 +108,7 @@ a {
   padding-bottom: .5rem;
 }
 
-/*SIDE - bar*/
-
+/* ===== for SIDE - bar ===== */
 #nav-id {
   z-index: 1;
   top: 0;
@@ -144,7 +143,7 @@ a {
   font-size: 1.5rem;
 }
 
-/*Article Popup*/
+/* ===== for Article Popup ===== */
 .article-item-pop{
   z-index: 1;
   height: 0;
@@ -200,8 +199,28 @@ a {
   background-color: rgb(54, 54, 54);
 }
 
-/*SHOPnav - bar*/
+/* ===== checkout/cart page ===== */
+#cart-main-id{
+  display: flex;
+  flex-direction: column;
+}
+.checkout-button{
+  font-size: 10.5pt;
+  align-self: flex-end;
+  right: 1;
+  border: none;
+  z-index: 1;
+  padding: 4%;
+  padding-left: 6%;
+  padding-right: 6%;
+  margin-top: -10%;
+  margin-right: 6%;
+  border-radius: .20rem;
+  color: white;
+  background-color: rgb(54, 54, 54);
+}
 
+/* ===== SHOPnav - bar ===== */
 #shop-nav {
   z-index: 1;
   height: 0;
@@ -254,8 +273,7 @@ a {
   font-weight: bold;
 }
 
-/*Article of Clothings*/
-
+/* ===== Article of Clothings ===== */
 section.clothing-articles {
   display: inline-block;
   text-align: center;
@@ -280,7 +298,6 @@ section.clothing-articles figcaption {
 }
 
 /*Checkout nav button*/
-
 .checkout-follower {
   z-index: 1;
   bottom: 0;
@@ -296,8 +313,7 @@ section.clothing-articles figcaption {
   background-color: rgb(31, 31, 31);
 }
 
-/*faq.html*/
-
+/* ===== faq.html ===== */
 .faq-sect {
   width: 90vw;
   position: relative;
@@ -337,7 +353,7 @@ section.clothing-articles figcaption {
   margin-bottom: 2rem;
 }
 
-/*lookbook.html styling */
+/* ===== lookbook.html styling ===== */
 .lookbook-list{
   list-style: none; 
   align-self: center; 
@@ -410,8 +426,7 @@ section.clothing-articles figcaption {
   }
 }
 
-/*contact page styling*/
-
+/* ===== contact page styling ===== */
 #contact-page-id {
   width: 90vw;
   text-align: center;
@@ -459,7 +474,7 @@ section.clothing-articles figcaption {
   margin-top: 1rem;
 }
 
-/* index css */
+/* ===== index css ===== */
 #main-index{
   width: 90vw;
 }
@@ -480,11 +495,9 @@ section.clothing-articles figcaption {
 }
 
 /*HIDING desktop components*/
-
 .desktop-header {
   display: none;
 }
-
 .desktop {
   display: none;
 }
