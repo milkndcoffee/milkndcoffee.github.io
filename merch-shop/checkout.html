@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
+<body onload="loadItems()">
   <div id="main-container">
     <!--HEADER|TITLE|CART-->
     <header>
@@ -52,18 +52,16 @@
     <main id="cart-main-id">
       <section id="cart-sect-id">
         <h1 class="h1-title">cart</h1>
-        <section class="default-sect">
-          <h2 style="text-align: left; padding-left: .5rem; font-size: 13pt;">shopping cart</h2>
-          <p style="width: 80vw; text-align: left; padding-left: .7rem; padding-right: .7rem;">
-            image <br>
-            name <br>
-            cost <br>
-          </p>
+        <section class="cart-sect">
+          <div style="display: flex; flex-direction: row;">
+            <h2 style="text-align: left; padding-left: .5rem; font-size: 13pt;">shopping cart</h2>
+            <button id="clear-button">clear</button>
+          </div>
         </section>
       </section>
       <button class="checkout-button">checkout</button>
     </main>
-    
+
 
     <!--FOOTER-->
     <footer>

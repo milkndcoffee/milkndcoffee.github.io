@@ -92,6 +92,7 @@ a {
 }
 
 .article-title {
+  margin-left: 1.5%;
   width: 90vw;
   display: inline-block;
   background: rgb(63, 63, 63);
@@ -185,31 +186,44 @@ a {
 }
 .add-to-cart{
   border: none;
-  z-index: 1;
-  right: 0;
   padding: 4%;
   margin: 4%;
   margin-top: 2%;
   border-radius: .40rem;
-  display: flex;
   height: auto;
   width: auto;
-  position: fixed;
   color: white;
   background-color: rgb(54, 54, 54);
 }
+.selector{
+  margin: 2%;
+}
+.bottom-panel-popup{
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: baseline;
+  padding-right: 2%;
+}
+
 
 /* ===== checkout/cart page ===== */
 #cart-main-id{
   display: flex;
   flex-direction: column;
 }
+.cart-sect{
+  width: 86vw;
+  display: inline-block;
+  
+}
+
 .checkout-button{
   font-size: 10.5pt;
   align-self: flex-end;
   right: 1;
   border: none;
-  z-index: 1;
+  z-index: 0;
   padding: 4%;
   padding-left: 6%;
   padding-right: 6%;
@@ -219,6 +233,48 @@ a {
   color: white;
   background-color: rgb(54, 54, 54);
 }
+.shopping-cart{
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center; 
+  font-size: 10pt;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  width: 86vw;
+  background-color: rgb(245, 244, 243);
+  border-radius: 4px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+.inner-shopping-cart{
+  display: flex;
+  flex-direction: row;
+  width: 86vw;
+  
+}
+.inner-shopping-cart img{
+  width: 26vw;
+  height: 26vw;
+}
+.inner-shopping-cart-imgPrice{
+  width: 30vw;
+}
+.inner-shopping-cart-name{
+  text-align: center;
+  width: 28vw;
+}
+.inner-shopping-cart-size{
+  width: 30vw;
+  height: 30vw;
+}
+.inner-div-titles{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-self: center;
+  padding-top: 20%;
+}
+
 
 /* ===== SHOPnav - bar ===== */
 #shop-nav {
@@ -299,7 +355,7 @@ section.clothing-articles figcaption {
 
 /*Checkout nav button*/
 .checkout-follower {
-  z-index: 1;
+  z-index: 0;
   bottom: 0;
   right: 0;
   padding: 1rem;

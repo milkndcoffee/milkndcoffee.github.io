@@ -202,7 +202,10 @@ function bringUpItemData(id, itemImg, name, price, desc){
   var p = document.createElement("p");
   var sect = document.createElement("section")
   var figCap = document.createElement("figcaption");
+  var div = document.createElement ("div");
   var button = document.createElement("button");
+  var label = document.createElement("label");
+  var select = document.createElement("select");
 
   //top bar that controls closing the popup
   imgDownArrow.src = "https://img.icons8.com/android/48/000000/expand-arrow.png";
@@ -214,6 +217,29 @@ function bringUpItemData(id, itemImg, name, price, desc){
     itemClicked = false;
     itemData[0].innerHTML = "";
   }); 
+
+  //item sizing
+  label.innerText = "size: "
+  var firstChar = id.charAt(0);
+  switch (id.charAt(0)){
+    case "A":
+      var arraySelect = ["xs", "s", "m", "l", "xl"];
+      break;
+    case "B":
+      var arraySelect = ["30", "31", "32", "33", "34"];
+      break;
+    case "C":
+      var arraySelect = ["one size"];
+      break;
+  }
+ 
+  for (var i=0; i < arraySelect.length; i++){
+    var option = document.createElement("option");
+    option.value = arraySelect[i];
+    option.text = arraySelect[i];
+    select.appendChild(option);
+  }
+  select.classList.add("selector");
 
   //item popup info
   h2.innerText = name;
@@ -227,6 +253,34 @@ function bringUpItemData(id, itemImg, name, price, desc){
   //add to cart button
   button.classList.add("add-to-cart");
   button.innerText = "add to cart";
+  button.addEventListener("click", function(){
+    //storing item info
+    if (localStorage.getItem("items")){
+      var storedItemsArr = JSON.parse(localStorage.getItem("items"));
+      storedItemsArr.push({
+        "itemName" : name,
+        "itemImg" : itemImg,
+        "itemSizing" : select.options[select.selectedIndex].value,
+        "itemPrice" : price
+      });
+
+      var storedItems = JSON.stringify(storedItemsArr);
+      localStorage.setItem("items", storedItems);
+      console.log(JSON.parse(storedItems));
+    } else { 
+      var storedItemsArr = [];
+      storedItemsArr.push({
+        "itemName" : name,
+        "itemImg" : itemImg,
+        "itemSizing" : select.options[select.selectedIndex].value,
+        "itemPrice" : price
+      });
+
+      var storedItems = JSON.stringify(storedItemsArr);
+      localStorage.setItem("items", storedItems);
+      console.log(JSON.parse(storedItems));
+    }
+  });
 
   sect.classList.add("active-popup-item-info");
   sect.appendChild(h2);
@@ -234,9 +288,15 @@ function bringUpItemData(id, itemImg, name, price, desc){
   sect.appendChild(figCap);
   sect.appendChild(p);
 
+  //div
+  div.appendChild(label);
+  div.appendChild(select);
+  div.appendChild(button);
+  div.classList.add("bottom-panel-popup");
+
   itemData[0].appendChild(imgDownArrow);
   itemData[0].appendChild(sect);
-  itemData[0].appendChild(button);
+  itemData[0].appendChild(div);
   console.log("CLICKED", id);
   itemData[0].classList.add("active-popup");
 }
@@ -459,3 +519,75 @@ function displaySlideshow(currSlideIndex) {
   slideSects[currSlideIndex - 1].style.display = "block"; //display current slideSection 
 }
 
+
+
+
+
+/*    -------------------
+         cart functions
+      -------------------    */
+function loadItems(){
+  var storedItemsArr = JSON.parse(localStorage.getItem("items"));
+  var sectElementOnPage = document.getElementsByClassName("cart-sect");
+  var clearButton = document.getElementById("clear-button");
+  var separatorDiv = document.createElement("div");
+  clearButton.addEventListener("click", function(){
+    localStorage.clear();
+  });
+  
+  console.log(storedItemsArr);
+  for (var i=0; i < storedItemsArr.length; i++){
+    var div = document.createElement("div");
+    var divName = document.createElement("div");
+    var divSize = document.createElement("div");
+    var divImgPrice = document.createElement("div");
+    var img = document.createElement("img");
+    var imgCap = document.createElement("figcaption");
+    var pName = document.createElement("p");
+    var pSizing = document.createElement("p");
+    
+    if (i == 0){
+      //Table Titles
+      var h2Name = document.createElement("h2");
+      var h2Price = document.createElement("h2");
+      var h2Size = document.createElement("h2");
+      h2Name.innerHTML = "name";
+      h2Price.innerHTML = "price";
+      h2Size.innerHTML = "size";
+      divName.appendChild(h2Name);
+      divImgPrice.appendChild(h2Price);
+      divSize.appendChild(h2Size);
+      separatorDiv.append(div)
+    }
+
+    img.src = storedItemsArr[i].itemImg;
+    imgCap.innerHTML = storedItemsArr[i].itemPrice;
+    pName.innerText = storedItemsArr[i].itemName;
+    pSizing.innerText = storedItemsArr[i].itemSizing;
+
+    innerDivName = document.createElement("div");
+    innerDivName.appendChild(pName);
+    innerDivSize = document.createElement("div");
+    innerDivSize.appendChild(pSizing);
+
+    divName.appendChild(innerDivName);
+    divImgPrice.appendChild(img);
+    divImgPrice.appendChild(imgCap);
+    divSize.appendChild(innerDivSize);
+    div.appendChild(divName);
+    div.appendChild(divImgPrice);
+    div.appendChild(divSize);
+
+    innerDivName.classList.add("inner-div-titles");
+    innerDivSize.classList.add("inner-div-titles");
+    divName.classList.add("inner-shopping-cart-name");    
+    divSize.classList.add("inner-shopping-cart-size");    
+    divImgPrice.classList.add("inner-shopping-cart-imgPrice");
+    div.classList.add("inner-shopping-cart");
+    separatorDiv.append(div)
+  }
+
+  separatorDiv.classList.add("shopping-cart");
+  sectElementOnPage[0].appendChild(separatorDiv);
+
+}
