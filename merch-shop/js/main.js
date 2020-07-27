@@ -156,7 +156,7 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
   var figcaptionElement = document.createElement("figcaption");
 
   //node construction/initialization
-  var sectId = sectionId; //unused atm but might be utilized later on for creating an item popup.
+  var sectId = sectionId; 
   var itemImg = itemImg;
   var itemName = itemName;
   var itemPrice = itemPrice;
@@ -195,6 +195,7 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
 function bringUpItemData(id, itemImg, name, price, desc){
   var itemClicked = true;
   
+  var checkoutButton = document.getElementsByClassName("checkout-button-transfer");
   var imgElement = document.createElement("img");
   var imgDownArrow = document.createElement("img");
   var itemData = document.getElementsByClassName("article-item-pop");
@@ -261,7 +262,7 @@ function bringUpItemData(id, itemImg, name, price, desc){
         "itemName" : name,
         "itemImg" : itemImg,
         "itemSizing" : select.options[select.selectedIndex].value,
-        "itemPrice" : price
+        "itemPrice" : parseFloat(price)
       });
 
       var storedItems = JSON.stringify(storedItemsArr);
@@ -273,13 +274,16 @@ function bringUpItemData(id, itemImg, name, price, desc){
         "itemName" : name,
         "itemImg" : itemImg,
         "itemSizing" : select.options[select.selectedIndex].value,
-        "itemPrice" : price
+        "itemPrice" : parseFloat(price)
       });
 
       var storedItems = JSON.stringify(storedItemsArr);
       localStorage.setItem("items", storedItems);
       console.log(JSON.parse(storedItems));
     }
+
+    //item update
+    onLoadCheckoutButton();
   });
 
   sect.classList.add("active-popup-item-info");
@@ -299,6 +303,20 @@ function bringUpItemData(id, itemImg, name, price, desc){
   itemData[0].appendChild(div);
   console.log("CLICKED", id);
   itemData[0].classList.add("active-popup");
+}
+
+function onLoadCheckoutButton(){
+  if (localStorage.getItem("items") != null){
+    var checkoutButton = document.getElementsByClassName("checkout-button-transfer");
+    var checkoutDiv = document.getElementsByClassName("checkout-follower");
+    var storedItemsArr = JSON.parse(localStorage.getItem("items"));
+    checkoutButton[0].innerHTML = "checkout " + "[" + storedItemsArr.length + "]";
+    
+
+    checkoutDiv[0].addEventListener("click", function(){
+      window.location.href = "../checkout.html";
+    });
+  }
 }
 
 function createSectionData(dataObj) {
@@ -526,26 +544,49 @@ function displaySlideshow(currSlideIndex) {
 /*    -------------------
          cart functions
       -------------------    */
+
 function loadItems(){
   var storedItemsArr = JSON.parse(localStorage.getItem("items"));
   var sectElementOnPage = document.getElementsByClassName("cart-sect");
   var clearButton = document.getElementById("clear-button");
   var separatorDiv = document.createElement("div");
+  
+  var total = 0;
+  var summing = 0;
+
   clearButton.addEventListener("click", function(){
     localStorage.clear();
+    window.location.reload(false); 
   });
   
-  console.log(storedItemsArr);
+  
+  //No Items in the Cart.. do this
+  if (storedItemsArr === null){
+    var h2Message = document.createElement("h2");
+    h2Message.innerHTML = "you currently have no items in your cart :(";
+    separatorDiv.append(h2Message)
+
+    separatorDiv.classList.add("shopping-cart");
+    sectElementOnPage[0].appendChild(separatorDiv);
+    return;
+  }
+
   for (var i=0; i < storedItemsArr.length; i++){
+    var currPrice = storedItemsArr[i]["itemPrice"];
+    summing += parseFloat(currPrice);
+    total = summing.toFixed(2);
+
     var div = document.createElement("div");
     var divName = document.createElement("div");
     var divSize = document.createElement("div");
-    var divImgPrice = document.createElement("div");
+    var divImgName = document.createElement("div");
+
     var img = document.createElement("img");
     var imgCap = document.createElement("figcaption");
-    var pName = document.createElement("p");
+    var pPrice = document.createElement("p");
     var pSizing = document.createElement("p");
     
+    //do this on first array
     if (i == 0){
       //Table Titles
       var h2Name = document.createElement("h2");
@@ -554,37 +595,72 @@ function loadItems(){
       h2Name.innerHTML = "name";
       h2Price.innerHTML = "price";
       h2Size.innerHTML = "size";
-      divName.appendChild(h2Name);
-      divImgPrice.appendChild(h2Price);
+      divName.appendChild(h2Price);
+      divImgName.appendChild(h2Name);
       divSize.appendChild(h2Size);
-      separatorDiv.append(div)
     }
 
     img.src = storedItemsArr[i].itemImg;
-    imgCap.innerHTML = storedItemsArr[i].itemPrice;
-    pName.innerText = storedItemsArr[i].itemName;
+    if (storedItemsArr[i].itemName.length > 9){
+      imgCap.innerHTML = storedItemsArr[i].itemName.substr(0,10) + "...";
+    } else {
+      imgCap.innerHTML = storedItemsArr[i].itemName;
+    }
+    
+    pPrice.innerText = "$" + storedItemsArr[i].itemPrice;
     pSizing.innerText = storedItemsArr[i].itemSizing;
 
-    innerDivName = document.createElement("div");
-    innerDivName.appendChild(pName);
-    innerDivSize = document.createElement("div");
+    var innerDivName = document.createElement("div");
+    innerDivName.appendChild(pPrice);
+    var innerDivSize = document.createElement("div");
     innerDivSize.appendChild(pSizing);
 
     divName.appendChild(innerDivName);
-    divImgPrice.appendChild(img);
-    divImgPrice.appendChild(imgCap);
+    divImgName.appendChild(img);
+    divImgName.appendChild(imgCap);
     divSize.appendChild(innerDivSize);
+    div.appendChild(divImgName);
     div.appendChild(divName);
-    div.appendChild(divImgPrice);
     div.appendChild(divSize);
+
+    
 
     innerDivName.classList.add("inner-div-titles");
     innerDivSize.classList.add("inner-div-titles");
-    divName.classList.add("inner-shopping-cart-name");    
+    divName.classList.add("inner-shopping-cart-price");    
     divSize.classList.add("inner-shopping-cart-size");    
-    divImgPrice.classList.add("inner-shopping-cart-imgPrice");
+    divImgName.classList.add("inner-shopping-cart-imgName");
     div.classList.add("inner-shopping-cart");
     separatorDiv.append(div)
+    
+    //do this on last array
+    if (i === (storedItemsArr.length-1)){
+      
+
+      console.log("hit");
+      var h2Total = document.createElement("h2");
+      var h2Price = document.createElement("h2");
+      var h2Test = document.createElement("h2");
+      h2Total.innerHTML = "total: ";
+      h2Price.innerHTML = "$" + total;
+      //h2Test.innerHTML = "test";
+
+      var innerDivTotal = document.createElement("div");
+      innerDivTotal.appendChild(h2Total);
+      var innerDivPrice = document.createElement("div");
+      innerDivPrice.appendChild(h2Price);
+
+      divImgName.appendChild(innerDivTotal);
+      divName.appendChild(innerDivPrice);
+
+      innerDivTotal.classList.add("inner-div-titles-total");
+      innerDivPrice.classList.add("inner-div-titles");
+
+      divSize.appendChild(h2Test);
+      div.appendChild(divImgName);
+      div.appendChild(divName);
+      div.appendChild(divSize);      
+    }
   }
 
   separatorDiv.classList.add("shopping-cart");

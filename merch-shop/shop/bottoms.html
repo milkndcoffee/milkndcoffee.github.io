@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- This website was updated by Adrian De Guzman, 6/17/20 -->
 
 <html lang="en">
 
@@ -16,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body onload="getItemData('bottoms')">
+<body onload="getItemData('bottoms'); onLoadCheckoutButton();">
   <div id="main-container">
     <!--HEADER|TITLE|CART-->
     <header>
@@ -37,7 +36,7 @@
 
           </nav>
         </div>
-        <a class="cart"><img src="https://img.icons8.com/windows/64/000000/shopping-cart.png" /></a>
+        <a class="cart" href="../checkout.html"><img src="https://img.icons8.com/windows/64/000000/shopping-cart.png" /></a>
       </div>
 
       <div class="desktop-title">
@@ -46,7 +45,7 @@
       </div>
       <div class="desktop-header">
         <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/24/000000/menu.png" />
-        <a class="cart"><img src="https://img.icons8.com/metro/26/000000/shopping-cart.png" /></a>
+        <a class="cart" href="../checkout.html"><img src="https://img.icons8.com/metro/26/000000/shopping-cart.png" /></a>
       </div>
     </header>
 
@@ -76,7 +75,7 @@
       </section>
 
       <div class="checkout-follower">
-        <a href="../checkout.html">checkout (0 items)</a>
+        <button class="checkout-button-transfer">checkout</button>
       </div>
     </main>
 
