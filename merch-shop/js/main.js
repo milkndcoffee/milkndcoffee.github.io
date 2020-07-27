@@ -156,7 +156,7 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
   var figcaptionElement = document.createElement("figcaption");
 
   //node construction/initialization
-  var sectId = sectionId; //unused atm but might be utilized later on for creating an item popup.
+  var sectId = sectionId; 
   var itemImg = itemImg;
   var itemName = itemName;
   var itemPrice = itemPrice;
@@ -195,6 +195,7 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
 function bringUpItemData(id, itemImg, name, price, desc){
   var itemClicked = true;
   
+  var checkoutButton = document.getElementsByClassName("checkout-button-transfer");
   var imgElement = document.createElement("img");
   var imgDownArrow = document.createElement("img");
   var itemData = document.getElementsByClassName("article-item-pop");
@@ -202,7 +203,10 @@ function bringUpItemData(id, itemImg, name, price, desc){
   var p = document.createElement("p");
   var sect = document.createElement("section")
   var figCap = document.createElement("figcaption");
+  var div = document.createElement ("div");
   var button = document.createElement("button");
+  var label = document.createElement("label");
+  var select = document.createElement("select");
 
   //top bar that controls closing the popup
   imgDownArrow.src = "https://img.icons8.com/android/48/000000/expand-arrow.png";
@@ -214,6 +218,29 @@ function bringUpItemData(id, itemImg, name, price, desc){
     itemClicked = false;
     itemData[0].innerHTML = "";
   }); 
+
+  //item sizing
+  label.innerText = "size: "
+  var firstChar = id.charAt(0);
+  switch (id.charAt(0)){
+    case "A":
+      var arraySelect = ["xs", "s", "m", "l", "xl"];
+      break;
+    case "B":
+      var arraySelect = ["30", "31", "32", "33", "34"];
+      break;
+    case "C":
+      var arraySelect = ["one size"];
+      break;
+  }
+ 
+  for (var i=0; i < arraySelect.length; i++){
+    var option = document.createElement("option");
+    option.value = arraySelect[i];
+    option.text = arraySelect[i];
+    select.appendChild(option);
+  }
+  select.classList.add("selector");
 
   //item popup info
   h2.innerText = name;
@@ -227,6 +254,37 @@ function bringUpItemData(id, itemImg, name, price, desc){
   //add to cart button
   button.classList.add("add-to-cart");
   button.innerText = "add to cart";
+  button.addEventListener("click", function(){
+    //storing item info
+    if (localStorage.getItem("items")){
+      var storedItemsArr = JSON.parse(localStorage.getItem("items"));
+      storedItemsArr.push({
+        "itemName" : name,
+        "itemImg" : itemImg,
+        "itemSizing" : select.options[select.selectedIndex].value,
+        "itemPrice" : parseFloat(price)
+      });
+
+      var storedItems = JSON.stringify(storedItemsArr);
+      localStorage.setItem("items", storedItems);
+      console.log(JSON.parse(storedItems));
+    } else { 
+      var storedItemsArr = [];
+      storedItemsArr.push({
+        "itemName" : name,
+        "itemImg" : itemImg,
+        "itemSizing" : select.options[select.selectedIndex].value,
+        "itemPrice" : parseFloat(price)
+      });
+
+      var storedItems = JSON.stringify(storedItemsArr);
+      localStorage.setItem("items", storedItems);
+      console.log(JSON.parse(storedItems));
+    }
+
+    //item update
+    onLoadCheckoutButton();
+  });
 
   sect.classList.add("active-popup-item-info");
   sect.appendChild(h2);
@@ -234,11 +292,31 @@ function bringUpItemData(id, itemImg, name, price, desc){
   sect.appendChild(figCap);
   sect.appendChild(p);
 
+  //div
+  div.appendChild(label);
+  div.appendChild(select);
+  div.appendChild(button);
+  div.classList.add("bottom-panel-popup");
+
   itemData[0].appendChild(imgDownArrow);
   itemData[0].appendChild(sect);
-  itemData[0].appendChild(button);
+  itemData[0].appendChild(div);
   console.log("CLICKED", id);
   itemData[0].classList.add("active-popup");
+}
+
+function onLoadCheckoutButton(){
+  if (localStorage.getItem("items") != null){
+    var checkoutButton = document.getElementsByClassName("checkout-button-transfer");
+    var checkoutDiv = document.getElementsByClassName("checkout-follower");
+    var storedItemsArr = JSON.parse(localStorage.getItem("items"));
+    checkoutButton[0].innerHTML = "checkout " + "[" + storedItemsArr.length + "]";
+    
+
+    checkoutDiv[0].addEventListener("click", function(){
+      window.location.href = "../checkout.html";
+    });
+  }
 }
 
 function createSectionData(dataObj) {
@@ -459,3 +537,133 @@ function displaySlideshow(currSlideIndex) {
   slideSects[currSlideIndex - 1].style.display = "block"; //display current slideSection 
 }
 
+
+
+
+
+/*    -------------------
+         cart functions
+      -------------------    */
+
+function loadItems(){
+  var storedItemsArr = JSON.parse(localStorage.getItem("items"));
+  var sectElementOnPage = document.getElementsByClassName("cart-sect");
+  var clearButton = document.getElementById("clear-button");
+  var separatorDiv = document.createElement("div");
+  
+  var total = 0;
+  var summing = 0;
+
+  clearButton.addEventListener("click", function(){
+    localStorage.clear();
+    window.location.reload(false); 
+  });
+  
+  
+  //No Items in the Cart.. do this
+  if (storedItemsArr === null){
+    var h2Message = document.createElement("h2");
+    h2Message.innerHTML = "you currently have no items in your cart :(";
+    separatorDiv.append(h2Message)
+
+    separatorDiv.classList.add("shopping-cart");
+    sectElementOnPage[0].appendChild(separatorDiv);
+    return;
+  }
+
+  for (var i=0; i < storedItemsArr.length; i++){
+    var currPrice = storedItemsArr[i]["itemPrice"];
+    summing += parseFloat(currPrice);
+    total = summing.toFixed(2);
+
+    var div = document.createElement("div");
+    var divName = document.createElement("div");
+    var divSize = document.createElement("div");
+    var divImgName = document.createElement("div");
+
+    var img = document.createElement("img");
+    var imgCap = document.createElement("figcaption");
+    var pPrice = document.createElement("p");
+    var pSizing = document.createElement("p");
+    
+    //do this on first array
+    if (i == 0){
+      //Table Titles
+      var h2Name = document.createElement("h2");
+      var h2Price = document.createElement("h2");
+      var h2Size = document.createElement("h2");
+      h2Name.innerHTML = "name";
+      h2Price.innerHTML = "price";
+      h2Size.innerHTML = "size";
+      divName.appendChild(h2Price);
+      divImgName.appendChild(h2Name);
+      divSize.appendChild(h2Size);
+    }
+
+    img.src = storedItemsArr[i].itemImg;
+    if (storedItemsArr[i].itemName.length > 9){
+      imgCap.innerHTML = storedItemsArr[i].itemName.substr(0,10) + "...";
+    } else {
+      imgCap.innerHTML = storedItemsArr[i].itemName;
+    }
+    
+    pPrice.innerText = "$" + storedItemsArr[i].itemPrice;
+    pSizing.innerText = storedItemsArr[i].itemSizing;
+
+    var innerDivName = document.createElement("div");
+    innerDivName.appendChild(pPrice);
+    var innerDivSize = document.createElement("div");
+    innerDivSize.appendChild(pSizing);
+
+    divName.appendChild(innerDivName);
+    divImgName.appendChild(img);
+    divImgName.appendChild(imgCap);
+    divSize.appendChild(innerDivSize);
+    div.appendChild(divImgName);
+    div.appendChild(divName);
+    div.appendChild(divSize);
+
+    
+
+    innerDivName.classList.add("inner-div-titles");
+    innerDivSize.classList.add("inner-div-titles");
+    divName.classList.add("inner-shopping-cart-price");    
+    divSize.classList.add("inner-shopping-cart-size");    
+    divImgName.classList.add("inner-shopping-cart-imgName");
+    div.classList.add("inner-shopping-cart");
+    separatorDiv.append(div)
+    
+    //do this on last array
+    if (i === (storedItemsArr.length-1)){
+      
+
+      console.log("hit");
+      var h2Total = document.createElement("h2");
+      var h2Price = document.createElement("h2");
+      var h2Test = document.createElement("h2");
+      h2Total.innerHTML = "total: ";
+      h2Price.innerHTML = "$" + total;
+      //h2Test.innerHTML = "test";
+
+      var innerDivTotal = document.createElement("div");
+      innerDivTotal.appendChild(h2Total);
+      var innerDivPrice = document.createElement("div");
+      innerDivPrice.appendChild(h2Price);
+
+      divImgName.appendChild(innerDivTotal);
+      divName.appendChild(innerDivPrice);
+
+      innerDivTotal.classList.add("inner-div-titles-total");
+      innerDivPrice.classList.add("inner-div-titles");
+
+      divSize.appendChild(h2Test);
+      div.appendChild(divImgName);
+      div.appendChild(divName);
+      div.appendChild(divSize);      
+    }
+  }
+
+  separatorDiv.classList.add("shopping-cart");
+  sectElementOnPage[0].appendChild(separatorDiv);
+
+}
