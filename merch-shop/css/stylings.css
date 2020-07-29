@@ -144,6 +144,15 @@ a {
   font-size: 1.5rem;
 }
 
+/* === shop.html === */
+.each-article{
+  display: block;
+  color: cornsilk;
+  padding-top: 2%;
+  padding-bottom: 6%;
+  margin-top: 0;
+}
+
 /* ===== for Article Popup ===== */
 .article-item-pop{
   z-index: 1;
