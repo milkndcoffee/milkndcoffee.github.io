@@ -92,7 +92,6 @@ a {
 }
 
 .article-title {
-  margin-left: 1.5%;
   width: 90vw;
   display: inline-block;
   background: rgb(63, 63, 63);
@@ -599,18 +598,61 @@ section.clothing-articles figcaption {
 
 /* ------------------------------------------------------------------------------------ */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*Desktop Stylings*/
 
 @media only screen and (min-width:769px) {
   .desktop {
     display: block;
   }
+  .desktop-container{
+    max-width: 66%;
+    margin: auto;
+  }
   #main-container {
     flex-direction: column;
+    max-width: 66%;
+    margin: auto;
   }
   main {
     margin-top: 2rem;
     width: 50%;
+  }
+  #main-index{
+    width: 100%;
+  }
+  .default-sect{
+    max-width: 56%;
+    margin: auto;
+  }
+  .h1-title{
+    max-width: 66%;
+    margin: auto;
+  }
+  .article-title{
+    max-width: 100%;
+  }
+  .default-sect > p {
+    max-width: 100%;
+    margin: auto;
   }
   .desktop-header {
     display: flex;
@@ -657,14 +699,23 @@ section.clothing-articles figcaption {
     margin-top: 4rem;
   }
   /*faq page*/
-  .faq-list li {
-    margin-left: -2rem;
-    content: "\2022";
-    list-style: none;
+  .faq-sect{
+    max-width: 100%;
+    margin: auto;
+  }
+  section.faq-list{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-left: .62rem;
+  }
+  .faq-list > li{
+    width: 90%;
+    text-align: center;
+    margin-left: -3.2rem;
     font-weight: normal;
     display: inline-block;
     align-self: center;
-    width: 40%;
   }
   .faq-q {
     background: rgb(63, 63, 63);
@@ -673,12 +724,13 @@ section.clothing-articles figcaption {
     padding-bottom: .5rem;
     padding-right: 2rem;
     margin-left: 2rem;
-    text-align: left;
+    text-align: center;
   }
   .faq-a {
-    color: rgb(0, 0, 0);
+    color: rgb(15, 15, 15);
     margin-bottom: 5rem;
     text-align: left;
+    
   }
   /*lookbook.html*/
   .prev-slide-ind:hover, .next-slide-ind:hover {
