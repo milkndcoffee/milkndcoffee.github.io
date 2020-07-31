@@ -21,7 +21,7 @@
 
 //NAVBAR
 function openBar() {
-  navBar = document.getElementById("nav-id");
+  var navBar = document.getElementById("nav-id");
   if (screen.width <= 769) {
     navBar.style.width = "80%";
   } else {
@@ -42,8 +42,13 @@ function closeBar() {
 
 //SHOP NAVBAR
 function openShopNav() {
-  shopNav = document.getElementById("shop-nav");
-  shopButton = document.getElementById("shop-button-id");
+  if (screen.width <= 769) {
+    var shopNav = document.getElementById("shop-nav");
+    var shopButton = document.getElementById("shop-button-id");
+  } else {
+    var shopNav = document.getElementById("shop-nav2");
+    var shopButton = document.getElementById("shop-button-id2");
+  }
   if (shopButton.classList.contains("active-shop-button")) {
     shopButton.classList.remove("active-shop-button");
     shopNav.style.height = "0";
@@ -53,6 +58,7 @@ function openShopNav() {
     shopNav.style.opacity = "1";
     shopButton.classList.add("active-shop-button");
   }
+
 }
 
 
@@ -156,7 +162,7 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
   var figcaptionElement = document.createElement("figcaption");
 
   //node construction/initialization
-  var sectId = sectionId; 
+  var sectId = sectionId;
   var itemImg = itemImg;
   var itemName = itemName;
   var itemPrice = itemPrice;
@@ -177,9 +183,9 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
   }
 
   //onclick of the specific element will bring up a popup
-  figureElement.addEventListener("click", function(){
+  figureElement.addEventListener("click", function () {
     //if code is to prevent multiple item info to display from multiple tapping
-    if (document.getElementsByClassName("article-item-pop")[0].classList.contains("active-popup") == false){
+    if (document.getElementsByClassName("article-item-pop")[0].classList.contains("active-popup") == false) {
       bringUpItemData(sectId, itemImg, itemName, itemPrice, itemDesc);
     }
   });
@@ -192,9 +198,9 @@ function createFigureData(sectionId, itemImg, itemName, itemPrice, itemDesc) {
 }
 
 // here we're going to bring up the item that allows the user to put items into the cart!
-function bringUpItemData(id, itemImg, name, price, desc){
+function bringUpItemData(id, itemImg, name, price, desc) {
   var itemClicked = true;
-  
+
   var checkoutButton = document.getElementsByClassName("checkout-button-transfer");
   var imgElement = document.createElement("img");
   var imgDownArrow = document.createElement("img");
@@ -203,7 +209,7 @@ function bringUpItemData(id, itemImg, name, price, desc){
   var p = document.createElement("p");
   var sect = document.createElement("section")
   var figCap = document.createElement("figcaption");
-  var div = document.createElement ("div");
+  var div = document.createElement("div");
   var button = document.createElement("button");
   var label = document.createElement("label");
   var select = document.createElement("select");
@@ -213,16 +219,16 @@ function bringUpItemData(id, itemImg, name, price, desc){
   imgDownArrow.style.width = "5%";
   imgDownArrow.style.height = "auto";
   imgDownArrow.classList.add("active-popup-down-arrow");
-  imgDownArrow.addEventListener("click", function(){
+  imgDownArrow.addEventListener("click", function () {
     itemData[0].classList.remove("active-popup");
     itemClicked = false;
     itemData[0].innerHTML = "";
-  }); 
+  });
 
   //item sizing
   label.innerText = "size: "
   var firstChar = id.charAt(0);
-  switch (id.charAt(0)){
+  switch (id.charAt(0)) {
     case "A":
       var arraySelect = ["xs", "s", "m", "l", "xl"];
       break;
@@ -233,8 +239,8 @@ function bringUpItemData(id, itemImg, name, price, desc){
       var arraySelect = ["one size"];
       break;
   }
- 
-  for (var i=0; i < arraySelect.length; i++){
+
+  for (var i = 0; i < arraySelect.length; i++) {
     var option = document.createElement("option");
     option.value = arraySelect[i];
     option.text = arraySelect[i];
@@ -250,31 +256,31 @@ function bringUpItemData(id, itemImg, name, price, desc){
   imgElement.style.borderRadius = "4px";
   figCap.innerHTML = "$" + price;
   p.innerText = desc;
-  
+
   //add to cart button
   button.classList.add("add-to-cart");
   button.innerText = "add to cart";
-  button.addEventListener("click", function(){
+  button.addEventListener("click", function () {
     //storing item info
-    if (localStorage.getItem("items")){
+    if (localStorage.getItem("items")) {
       var storedItemsArr = JSON.parse(localStorage.getItem("items"));
       storedItemsArr.push({
-        "itemName" : name,
-        "itemImg" : itemImg,
-        "itemSizing" : select.options[select.selectedIndex].value,
-        "itemPrice" : parseFloat(price)
+        "itemName": name,
+        "itemImg": itemImg,
+        "itemSizing": select.options[select.selectedIndex].value,
+        "itemPrice": parseFloat(price)
       });
 
       var storedItems = JSON.stringify(storedItemsArr);
       localStorage.setItem("items", storedItems);
       console.log(JSON.parse(storedItems));
-    } else { 
+    } else {
       var storedItemsArr = [];
       storedItemsArr.push({
-        "itemName" : name,
-        "itemImg" : itemImg,
-        "itemSizing" : select.options[select.selectedIndex].value,
-        "itemPrice" : parseFloat(price)
+        "itemName": name,
+        "itemImg": itemImg,
+        "itemSizing": select.options[select.selectedIndex].value,
+        "itemPrice": parseFloat(price)
       });
 
       var storedItems = JSON.stringify(storedItemsArr);
@@ -305,15 +311,15 @@ function bringUpItemData(id, itemImg, name, price, desc){
   itemData[0].classList.add("active-popup");
 }
 
-function onLoadCheckoutButton(){
-  if (localStorage.getItem("items") != null){
+function onLoadCheckoutButton() {
+  if (localStorage.getItem("items") != null) {
     var checkoutButton = document.getElementsByClassName("checkout-button-transfer");
     var checkoutDiv = document.getElementsByClassName("checkout-follower");
     var storedItemsArr = JSON.parse(localStorage.getItem("items"));
     checkoutButton[0].innerHTML = "checkout " + "[" + storedItemsArr.length + "]";
-    
 
-    checkoutDiv[0].addEventListener("click", function(){
+
+    checkoutDiv[0].addEventListener("click", function () {
       window.location.href = "../checkout.html";
     });
   }
@@ -397,30 +403,30 @@ function fetchLookbook() {
       jsonData = json.lookbook;
       console.log('lookbook json :', jsonData);
       var arrOfObjIds = new Array;
-      
+
       fetch(idUrl)
-      .then(response => response.json())
-      .then(json => {
-        clothData = json;
-        var obj1 = jsonToObjByType(clothData.product[0]);
-        var obj2 = jsonToObjByType(clothData.product[1]);
-        var obj3 = jsonToObjByType(clothData.product[2]);
-        let objAll = {...obj1, ...obj2, ...obj3};
-        //var arrOfObjIds = new Array;
-        for (const c in objAll){
-          for (i=0; i<objAll[c].length; i++){
-            arrOfObjIds.push({
-              id: objAll[c][i].id,
-              name: objAll[c][i].name,
-              article: c
-            });
+        .then(response => response.json())
+        .then(json => {
+          clothData = json;
+          var obj1 = jsonToObjByType(clothData.product[0]);
+          var obj2 = jsonToObjByType(clothData.product[1]);
+          var obj3 = jsonToObjByType(clothData.product[2]);
+          let objAll = { ...obj1, ...obj2, ...obj3 };
+          //var arrOfObjIds = new Array;
+          for (const c in objAll) {
+            for (i = 0; i < objAll[c].length; i++) {
+              arrOfObjIds.push({
+                id: objAll[c][i].id,
+                name: objAll[c][i].name,
+                article: c
+              });
+            }
           }
-        }
-        console.log(arrOfObjIds);
-        appendSlidesFromDb(jsonData, arrOfObjIds);
-        onLoadThisSlide(1);
-      });
-      
+          console.log(arrOfObjIds);
+          appendSlidesFromDb(jsonData, arrOfObjIds);
+          onLoadThisSlide(1);
+        });
+
     });
 }
 
@@ -455,13 +461,13 @@ function createSlideDOM(objSlide, current, max, arrOfObjIds) {
   h2ListDOM.innerText = "cop the style:"
   h2ListDOM.style.fontSize = "17pt";
 
- //constructing our list
-  for (var i=0; i< objSlide.itemIds.length; i++){
-    for (var arrIndex=0; arrIndex < arrOfObjIds.length; arrIndex++){
-      if (objSlide.itemIds[i] == arrOfObjIds[arrIndex].id){
+  //constructing our list
+  for (var i = 0; i < objSlide.itemIds.length; i++) {
+    for (var arrIndex = 0; arrIndex < arrOfObjIds.length; arrIndex++) {
+      if (objSlide.itemIds[i] == arrOfObjIds[arrIndex].id) {
         console.log("objSlide ID:", arrOfObjIds[arrIndex].id, arrOfObjIds[arrIndex].name);
         var tempLiListDOM = document.createElement("li");
-        tempLiListDOM.innerHTML = "<b>"+arrOfObjIds[arrIndex].article+ "</b>: " +arrOfObjIds[arrIndex].name;
+        tempLiListDOM.innerHTML = "<b>" + arrOfObjIds[arrIndex].article + "</b>: " + arrOfObjIds[arrIndex].name;
         tempLiListDOM.className = "lookbook-list";
         ulListDOM.appendChild(tempLiListDOM);
       }
@@ -474,7 +480,7 @@ function createSlideDOM(objSlide, current, max, arrOfObjIds) {
   slideDOM.appendChild(imgCapDOM);
   slideDOM.appendChild(h2ListDOM);
   slideDOM.appendChild(ulListDOM);
-  
+
   return (slideDOM);
 }
 
@@ -492,7 +498,7 @@ function appendSlidesFromDb(arrayData, arrOfObjIds) {
   var arrayDOM = constructSlidesFromDb(arrayData, arrOfObjIds);
 
   for (i = 0; i < arrayDOM.length; i++) {
-    console.log("arrayDOM: ",arrayDOM[i], arrayDOM.length);
+    console.log("arrayDOM: ", arrayDOM[i], arrayDOM.length);
     slideShowSectInHTML.appendChild(arrayDOM[i]);
   }
 }
@@ -545,23 +551,23 @@ function displaySlideshow(currSlideIndex) {
          cart functions
       -------------------    */
 
-function loadItems(){
+function loadItems() {
   var storedItemsArr = JSON.parse(localStorage.getItem("items"));
   var sectElementOnPage = document.getElementsByClassName("cart-sect");
   var clearButton = document.getElementById("clear-button");
   var separatorDiv = document.createElement("div");
-  
+
   var total = 0;
   var summing = 0;
 
-  clearButton.addEventListener("click", function(){
+  clearButton.addEventListener("click", function () {
     localStorage.clear();
-    window.location.reload(false); 
+    window.location.reload(false);
   });
-  
-  
+
+
   //No Items in the Cart.. do this
-  if (storedItemsArr === null){
+  if (storedItemsArr === null) {
     var h2Message = document.createElement("h2");
     h2Message.innerHTML = "you currently have no items in your cart :(";
     separatorDiv.append(h2Message)
@@ -571,7 +577,7 @@ function loadItems(){
     return;
   }
 
-  for (var i=0; i < storedItemsArr.length; i++){
+  for (var i = 0; i < storedItemsArr.length; i++) {
     var currPrice = storedItemsArr[i]["itemPrice"];
     summing += parseFloat(currPrice);
     total = summing.toFixed(2);
@@ -585,9 +591,9 @@ function loadItems(){
     var imgCap = document.createElement("figcaption");
     var pPrice = document.createElement("p");
     var pSizing = document.createElement("p");
-    
+
     //do this on first array
-    if (i == 0){
+    if (i == 0) {
       //Table Titles
       var h2Name = document.createElement("h2");
       var h2Price = document.createElement("h2");
@@ -601,12 +607,12 @@ function loadItems(){
     }
 
     img.src = storedItemsArr[i].itemImg;
-    if (storedItemsArr[i].itemName.length > 9){
-      imgCap.innerHTML = storedItemsArr[i].itemName.substr(0,10) + "...";
+    if (storedItemsArr[i].itemName.length > 9) {
+      imgCap.innerHTML = storedItemsArr[i].itemName.substr(0, 10) + "...";
     } else {
       imgCap.innerHTML = storedItemsArr[i].itemName;
     }
-    
+
     pPrice.innerText = "$" + storedItemsArr[i].itemPrice;
     pSizing.innerText = storedItemsArr[i].itemSizing;
 
@@ -623,19 +629,19 @@ function loadItems(){
     div.appendChild(divName);
     div.appendChild(divSize);
 
-    
+
 
     innerDivName.classList.add("inner-div-titles");
     innerDivSize.classList.add("inner-div-titles");
-    divName.classList.add("inner-shopping-cart-price");    
-    divSize.classList.add("inner-shopping-cart-size");    
+    divName.classList.add("inner-shopping-cart-price");
+    divSize.classList.add("inner-shopping-cart-size");
     divImgName.classList.add("inner-shopping-cart-imgName");
     div.classList.add("inner-shopping-cart");
     separatorDiv.append(div)
-    
+
     //do this on last array
-    if (i === (storedItemsArr.length-1)){
-      
+    if (i === (storedItemsArr.length - 1)) {
+
 
       console.log("hit");
       var h2Total = document.createElement("h2");
@@ -659,7 +665,7 @@ function loadItems(){
       divSize.appendChild(h2Test);
       div.appendChild(divImgName);
       div.appendChild(divName);
-      div.appendChild(divSize);      
+      div.appendChild(divSize);
     }
   }
 

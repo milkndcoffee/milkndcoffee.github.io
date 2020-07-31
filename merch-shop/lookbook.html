@@ -16,45 +16,48 @@
 </head>
 
 <body onload="fetchLookbook();">
-  <div id="main-container">
-    <!--HEADER|TITLE|CART-->
-    <header>
-      <div class="mobile-title">
-        <h1 class="mobile">NaRSS</h1>
-        <p class="mobile dir-name">/lookbook</p>
-      </div>
-      <div class="mobile-header">
-        <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/48/000000/menu.png" />
-        <a class="cart" href="checkout.html"><img src="https://img.icons8.com/windows/64/000000/shopping-cart.png" /></a>
-      </div>
+  <div class="desktop-container">
+    <div id="main-container">
+      <!--HEADER|TITLE|CART-->
+      <header>
+        <div class="mobile-title">
+          <h1 class="mobile">NaRSS</h1>
+          <p class="mobile dir-name">/lookbook</p>
+        </div>
+        <div class="mobile-header">
+          <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/48/000000/menu.png" />
+          <a class="cart" href="checkout.html"><img
+              src="https://img.icons8.com/windows/64/000000/shopping-cart.png" /></a>
+        </div>
 
-      <div class="desktop-title">
-        <h1 class="desktop">Not a Real Shop Shop</h1>
-        <p class="desktop dir-name">/lookbook</p>
-      </div>
-      <div class="desktop-header">
-        <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/24/000000/menu.png" />
-        <a class="cart" href="checkout.html"><img src="https://img.icons8.com/metro/26/000000/shopping-cart.png" /></a>
-      </div>
-    </header>
+        <div class="desktop-title">
+          <h1 class="desktop">Not a Real Shop Shop</h1>
+          <p class="desktop dir-name">/lookbook</p>
+        </div>
+        <div class="desktop-header">
+          <img class="nav-button" onclick="openBar()" src="https://img.icons8.com/material-sharp/24/000000/menu.png" />
+          <a class="cart" href="checkout.html"><img
+              src="https://img.icons8.com/metro/26/000000/shopping-cart.png" /></a>
+        </div>
+      </header>
 
-    <!--SIDEBAR-->
-    <nav id="nav-id">
-      <a href="#" class="nav-close" onclick="closeBar()">x</a>
-      <a href="index.html">about</a>
-      <a href="shop.html">shop</a>
-      <a href="lookbook.html">lookbook</a>
-      <a href="faq.html">faq</a>
-      <a href="contact.html">contact</a>
-    </nav>
+      <!--SIDEBAR-->
+      <nav id="nav-id">
+        <a href="#" class="nav-close" onclick="closeBar()">x</a>
+        <a href="index.html">about</a>
+        <a href="shop.html">shop</a>
+        <a href="lookbook.html">lookbook</a>
+        <a href="faq.html">faq</a>
+        <a href="contact.html">contact</a>
+      </nav>
 
-    <!--MAIN - LOOKBOOK-->
-    <main id="main-lookbook">
-      <section class="slideshow-section" id="slideshow-sect">
+      <!--MAIN - LOOKBOOK-->
+      <main >
+        <section class="slideshow-section" id="slideshow-sect">
 
-        <h1 class="article-title">lookbook</h1>
+          <h1 class="article-title">lookbook</h1>
 
-        <!--template sections that will be replaced by json db information
+          <!--template sections that will be replaced by json db information
         <section class="section-slide fade">
           <div class="current-slide-indicator">1 / 4</div>
           <img class="placeholder-clothes" src="not-found.png" >
@@ -73,19 +76,20 @@
           <figcaption class="lookbook-cap">third image</figcaption>
         </section>
         -->
-        <a class="prev-slide-ind" onclick="changeSlide(-1)">&#10094;</a>
-        <a class="next-slide-ind" onclick="changeSlide(1)">&#10095;</a>
-      </section>
-    </main>
+          <a class="prev-slide-ind" onclick="changeSlide(-1)">&#10094;</a>
+          <a class="next-slide-ind" onclick="changeSlide(1)">&#10095;</a>
+        </section>
+      </main>
 
-    <!--FOOTER-->
-    <footer>
-      <p>Contact Me @</p>
-      <p>Adrian De Guzman | milkndcoffee@gmail.com | hosted on Github.</p>
-      <a href="https://icons8.com/icon/84026/menu">Menu icon by Icons8</a>
-      <a class="desktop" href="https://icons8.com/icon/3538/shopping-cart">Shopping Cart icon by Icons8</a>
-      <a class="mobile" href="https://icons8.com/icon/15893/shopping-cart">Shopping Cart icon by Icons8</a>
-    </footer>
+      <!--FOOTER-->
+      <footer>
+        <p>Contact Me @</p>
+        <p>Adrian De Guzman | milkndcoffee@gmail.com | hosted on Github.</p>
+        <a href="https://icons8.com/icon/84026/menu">Menu icon by Icons8</a>
+        <a class="desktop" href="https://icons8.com/icon/3538/shopping-cart">Shopping Cart icon by Icons8</a>
+        <a class="mobile" href="https://icons8.com/icon/15893/shopping-cart">Shopping Cart icon by Icons8</a>
+      </footer>
+    </div>
   </div>
 </body>
 
