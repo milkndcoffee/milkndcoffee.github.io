@@ -754,6 +754,10 @@ section.clothing-articles figcaption {
     text-align: left;
   }
   /*shop.html*/
+  .checkout-follower{
+    right: unset;
+    margin-left: 56%;
+  }
   .each-article {
     padding-top: 4%;
     padding-bottom: 4%;
@@ -902,6 +906,68 @@ section.clothing-articles figcaption {
     flex-direction: row;
     align-items: baseline;
     padding-right: 2%;
+  }
+
+  /*contact page*/
+  #contact-page-id{
+    width: 100%;
+  }
+  .form-container{
+    margin-top: 1.4rem;
+    width: 100%;
+  }
+
+  /*checkout page*/
+  .cart-sect{
+    width: 100%;
+    margin-bottom: 1rem;
+    padding-bottom: 4rem;
+  }
+  #clear-button{
+    margin-top: 3rem;
+    margin-bottom: -2%;
+    padding: .6rem .8rem .6rem .8rem;
+  }
+  .cart-sect h2{
+    margin-top: 3rem;
+    margin-bottom: -2%;
+    margin-left: 2%;
+  }
+  .cart-sect p{
+    font-size: 12pt;
+  }
+  .inner-shopping-cart h2{
+    margin: unset;
+    margin-bottom: 6%;
+  }
+  .shopping-cart{
+    width: 100%;
+  }
+  .inner-shopping-cart{
+    width: unset;
+    height: 15vw;
+  }
+  .inner-div-titles{
+    height: 40%;
+  }
+  .inner-div-titles-total{
+    height: 30%;
+    padding-top: 22%;
+  }
+  .inner-shopping-cart-size{
+    height: unset;
+  }
+  .cart-sect img {
+    width: 50%;
+    height: auto;
+  }
+  .cart-sect h2{
+    text-align: center;
+  }
+  .checkout-button{
+    margin-top: -12%;
+    margin-right: 2%;
+    padding: .8rem 1rem .8rem 1rem;
   }
 
   /*hide mobile items*/
